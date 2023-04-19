@@ -2,170 +2,630 @@
   "HorizonLayout": [
     {
       "layout": "logo",
+      "image": "https://i.imgur.com/6RofMX6.png",
+      "showLogo": true,
+      "menuIcon": {
+        "fontFamily": "CupertinoIcons",
+        "name": "line_horizontal_3"
+      },
       "showMenu": true,
-      "showSearch": true,
-      "showLogo": true
+      "showSearch": false,
+      "showNotification": true,
+      "showCart": false
     },
     {
-      "layout": "category",
+      "labelFontSize": 14,
+      "line": false,
+      "noBackground": false,
       "type": "icon",
+      "showShortDescription": true,
+      "marginX": 0,
+      "marginLeft": 10,
+      "marginY": 0,
+      "marginRight": 10,
+      "layout": "category",
+      "paddingX": 0,
+      "imageBorderStyle": "solid",
+      "imageSpacing": 0,
+      "spacing": 10,
+      "size": 1,
+      "hideTitle": false,
+      "marginBottom": 10,
+      "radius": 10,
       "wrap": false,
-      "size": 1.0,
-      "radius": 50.0,
       "items": [
         {
-          "category": 18,
-          "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png",
+          "image": "https://i.imgur.com/wSufIeP.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "97",
           "colors": [
-            "#3CC2BF",
-            "#3CC2BF"
-          ],
-          "originalColor": false
-        },
-        {
-          "category": 24,
-          "image": "https://trello-attachments.s3.amazonaws.com/60a62a9bca5053572a669dee/48x58/a68d188ae063a20eac903fe2ca00ece5/ic_dress.png",
-          "colors": [
-            "#3E6AB5",
-            "#3E6AB5"
+            "#333333"
           ]
         },
         {
-          "category": 25,
-          "image": "https://trello-attachments.s3.amazonaws.com/60a62a9bca5053572a669dee/68x54/93b296bf55ec19d22778158bf06d2dbc/ic_shorts.png",
+          "image": "https://i.imgur.com/Twa5W4O.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "73",
           "colors": [
-            "#53A2CC",
-            "#53A2CC"
+            "#333333"
           ]
         },
         {
-          "category": 28,
-          "label": "Shoes",
-          "image": "https://trello-attachments.s3.amazonaws.com/60a62a9bca5053572a669dee/68x50/bf817e570f9d704dc88dad8bb29386d1/ic_shoes.png",
+          "image": "https://i.imgur.com/rG7snun.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "80",
           "colors": [
-            "#53688A",
-            "#53688A"
+            "#333333"
           ]
         },
         {
-          "category": 29,
-          "image": "https://trello-attachments.s3.amazonaws.com/60a62a9bca5053572a669dee/72x38/8c778c1b92f5ca02e00c4a34b562c601/ic_tie.png",
+          "image": "https://i.imgur.com/H6bpsqh.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "91",
           "colors": [
-            "#43506A",
-            "#43506A"
+            "#333333"
           ]
         },
         {
-          "category": 30,
-          "image": "https://trello-attachments.s3.amazonaws.com/60a62a9bca5053572a669dee/68x34/e20dbfd9e05fb3fbb8991d5d2213a9b0/ic_panties.png",
+          "image": "https://i.imgur.com/dVfitMt.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "84",
           "colors": [
-            "#12B58C",
-            "#12B58C"
+            "#333333"
+          ]
+        },
+        {
+          "image": "https://i.imgur.com/Nyd6GM0.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "90",
+          "colors": [
+            "#333333"
+          ]
+        },
+        {
+          "image": "https://i.imgur.com/xYLF8bh.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "88",
+          "colors": [
+            "#333333"
+          ]
+        },
+        {
+          "image": "https://i.imgur.com/i3DGuaW.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "96",
+          "colors": [
+            "#333333"
+          ]
+        },
+        {
+          "image": "https://i.imgur.com/YIUDVzq.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "94",
+          "colors": [
+            "#333333"
+          ]
+        },
+        {
+          "image": "https://i.imgur.com/YNTm2W4.png",
+          "showDescription": false,
+          "originalColor": true,
+          "keepDefaultTitle": false,
+          "category": "89",
+          "colors": [
+            "#333333"
           ]
         }
-      ]
+      ],
+      "marginTop": 10,
+      "paddingY": 0
     },
     {
-      "layout": "bannerImage",
+      "padding": 0,
+      "upHeight": 0,
+      "parallax": false,
       "isSlider": true,
-      "autoPlay": false,
+      "enableParallax": false,
+      "isHorizontal": false,
+      "marginLeft": 15,
+      "layout": "bannerImage",
+      "fit": "fitWidth",
+      "marginRight": 15,
+      "isBlur": false,
+      "parallaxImageRatio": 1.2,
       "showNumber": false,
       "design": "default",
-      "showBackGround": true,
-      "radius": 2.0,
+      "showBackground": false,
+      "marginBottom": 0,
+      "radius": 2,
+      "autoPlay": true,
       "items": [
         {
-          "category": 29,
-          "image": "https://trello-attachments.s3.amazonaws.com/5f8fe6093cd3ef24d9ede5f5/1185x561/e13d41fd04e4da0833097ab4e893c8c5/Mobile_Template_1b.png",
-          "padding": 15.0
+          "image": "https://i.imgur.com/ADVZZsc.png",
+          "bannerWithProduct": false,
+          "showSubcategory": false,
+          "defaultShowProduct": false,
+          "products": []
         },
         {
-          "category": 28,
-          "image": "https://user-images.githubusercontent.com/1459805/59846818-12672e80-938b-11e9-8184-5f7bfe66f1a2.png",
-          "padding": 15.0
-        },
-        {
-          "product": 30,
-          "image": "https://user-images.githubusercontent.com/1459805/60091808-a19b8a00-976f-11e9-9cc7-576ca05c2442.png",
-          "padding": 15.0
+          "image": "https://i.imgur.com/RlX6jpl.png",
+          "bannerWithProduct": false,
+          "showSubcategory": false,
+          "defaultShowProduct": false,
+          "products": []
         }
-      ]
+      ],
+      "marginTop": 0,
+      "intervalTime": 3
     },
     {
-      "name": "Feliz venta flash 🎁",
-      "layout": "saleOff",
-      "category": 22,
-      "isSnapping": true
-    },
-    {
-      "name": "Colecciones Hombre",
+      "showCartIcon": true,
+      "boxShadow": {
+        "spreadRadius": 10,
+        "colorOpacity": 0.1,
+        "blurRadius": 14,
+        "x": 0,
+        "y": 6
+      },
+      "imageBoxfit": "contain",
+      "showStockStatus": false,
+      "featured": false,
+      "hideEmptyProductLayout": false,
+      "titleLine": 1,
+      "showCountDown": false,
+      "parallax": false,
+      "columns": 0,
+      "hideStore": false,
+      "vPadding": 0,
+      "showQuantity": false,
+      "showHeart": true,
+      "hMargin": 8,
+      "parallaxImageRatio": 1.2,
+      "showCartButtonWithQuantity": false,
+      "vMargin": 8,
+      "showOnlyImage": false,
+      "onSale": true,
       "image": "",
+      "productListItemHeight": 125,
+      "showCartIconColor": false,
+      "orderby": "popularity",
+      "hPadding": 16,
+      "hidePrice": false,
+      "rows": 1,
+      "enableBottomAddToCart": false,
       "layout": "twoColumn",
-      "category": 21
+      "enableRating": false,
+      "imageRatio": 1,
+      "hideTitle": false,
+      "borderRadius": 8,
+      "cardDesign": "card",
+      "backgroundRadius": 10,
+      "isSnapping": true,
+      "showCartButton": false,
+      "name": "⚡Ofertas de la Semana",
+      "cartIconRadius": 9,
+      "hideEmptyProductListRating": false
     },
     {
+      "parallax": false,
+      "enableParallax": false,
+      "isHorizontal": false,
+      "marginLeft": 0,
       "layout": "bannerImage",
-      "height": 0.15,
+      "fit": "fitWidth",
+      "marginRight": 0,
+      "parallaxImageRatio": 1.2,
+      "design": "static",
+      "marginBottom": 0,
       "items": [
         {
-          "image": "https://trello-attachments.s3.amazonaws.com/5fb8de4a9ffe12204a2a3607/700x263/f5d6007a5563735691c68eb12563d1e5/image.png",
-          "coupon": "blackf",
-          "padding": 15.0,
-          "radius": 9.0
+          "image": "https://i.imgur.com/8PKH8Rv.jpeg",
+          "padding": 15,
+          "bannerWithProduct": false,
+          "showSubcategory": false,
+          "defaultShowProduct": false,
+          "products": []
         }
-      ]
+      ],
+      "marginTop": 20,
+      "height": 0.15
     },
     {
-      "name": "Vista reciente",
-      "layout": "recentView"
+      "showCartIcon": true,
+      "imageBoxfit": "cover",
+      "showStockStatus": true,
+      "featured": true,
+      "hideEmptyProductLayout": false,
+      "showCountDown": false,
+      "parallax": false,
+      "columns": 0,
+      "hideStore": false,
+      "vPadding": 0,
+      "showQuantity": false,
+      "showHeart": false,
+      "hMargin": 6,
+      "parallaxImageRatio": 1.2,
+      "showCartButtonWithQuantity": false,
+      "vMargin": 0,
+      "showOnlyImage": false,
+      "onSale": false,
+      "order": "asc",
+      "image": "",
+      "productListItemHeight": 125,
+      "showCartIconColor": false,
+      "orderby": "popularity",
+      "hPadding": 0,
+      "hidePrice": false,
+      "rows": 1,
+      "enableBottomAddToCart": false,
+      "layout": "largeCard",
+      "enableRating": true,
+      "imageRatio": 1.2,
+      "hideTitle": false,
+      "borderRadius": 3,
+      "cardDesign": "card",
+      "backgroundRadius": 10,
+      "isSnapping": false,
+      "showCartButton": false,
+      "name": "Lo Más Destacado",
+      "cartIconRadius": 9,
+      "hideEmptyProductListRating": false
     },
     {
-      "name": "Nuestras publicaciones de blog",
-      "layout": "blog"
-    },
-    {
-      "name": "Colecciones nuevas",
-      "layout": "staggered",
-      "limit": 20,
-      "category": 29
+      "parallax": false,
+      "enableParallax": false,
+      "isHorizontal": false,
+      "marginLeft": 0,
+      "layout": "bannerImage",
+      "fit": "fitWidth",
+      "marginRight": 0,
+      "parallaxImageRatio": 1.2,
+      "design": "static",
+      "marginBottom": 0,
+      "items": [
+        {
+          "image": "https://i.imgur.com/Nl2gSyW.jpeg",
+          "padding": 15,
+          "bannerWithProduct": false,
+          "showSubcategory": false,
+          "defaultShowProduct": false,
+          "products": []
+        }
+      ],
+      "marginTop": 0
     }
   ],
   "Setting": {
-    "MainColor": "#3FC1BE",
-    "FontFamily": "Roboto",
-    "FontHeader": "Raleway",
+    "TabBarConfig": {
+      "enableOnTop": false,
+      "color": null,
+      "radiusTopLeft": 0,
+      "paddingRight": 0,
+      "radiusTopRight": 0,
+      "TabBarIndicator": {
+        "strokeWidth": null,
+        "color": "ffff9a12",
+        "horizontalPadding": null,
+        "topRightRadius": null,
+        "tabPosition": "top",
+        "bottomRightRadius": 9.988863169703269,
+        "bottomLeftRadius": 9.980371609191021,
+        "topLeftRadius": null,
+        "paintingStyle": "fill",
+        "distanceFromCenter": null,
+        "radius": null,
+        "verticalPadding": null,
+        "height": null
+      },
+      "marginRight": 0,
+      "paddingBottom": 0,
+      "indicatorStyle": "dot",
+      "enable": true,
+      "radiusBottomRight": 0,
+      "iconSize": 23.025228226675463,
+      "showFloatingClip": true,
+      "paddingTop": 0,
+      "isSafeArea": true,
+      "TabBarFloating": {
+        "elevation": 0,
+        "color": "ffff9a12",
+        "width": null,
+        "floatingType": "rectangle",
+        "location": "centerDocked",
+        "position": 2,
+        "radius": null,
+        "height": null
+      },
+      "showFloating": true,
+      "colorActiveIcon": "ffff9a12",
+      "colorCart": "fff44336",
+      "radiusBottomLeft": 0,
+      "marginLeft": 0,
+      "colorIcon": "ff7a7b7f",
+      "marginBottom": 0,
+      "paddingLeft": 0,
+      "marginTop": 0
+    },
+    "FontFamily": "Nunito",
+    "FontHeader": "Nunito",
+    "ProductDetail": "simpleType",
+    "MainColor": "ffff9a12",
+    "ShowChat": true,
     "ProductListLayout": "list",
-    "StickyHeader": false,
-    "ShowChat": true
+    "StickyHeader": false
   },
   "TabBar": [
     {
       "layout": "home",
-      "icon": "assets/icons/tabs/icon-home.png"
-    },
-    {
-      "layout": "videos",
-      "icon": "assets/icons/tabs/icon-videos.png"
+      "pos": 100,
+      "defaultTab": false,
+      "icon": "assets/icons/tabs/icon-home.png",
+      "key": "pl8gkgsc10"
     },
     {
       "layout": "category",
-      "categoryLayout": "card",
-      "icon": "assets/icons/tabs/icon-category.png"
+      "parallaxImageRatio": 1.2,
+      "fontFamily": "CupertinoIcons",
+      "pos": 200,
+      "parallax": false,
+      "defaultTab": false,
+      "icon": "square_grid_2x2",
+      "categoryLayout": "animation",
+      "key": "pl8gkgsc10"
     },
     {
       "layout": "search",
-      "icon": "assets/icons/tabs/icon-search.png"
+      "pos": 300,
+      "icon": "assets/icons/tabs/icon-search.png",
+      "key": "pl8gkgsc10"
+    },
+    {
+      "layout": "profile",
+      "settings": [
+        "wishlist",
+        "notifications",
+        "order",
+        "darkTheme",
+        "rating",
+        "web-zkyaam1xqj",
+        "web-t7t40gao4k",
+        "privacy"
+      ],
+      "pos": 400,
+      "background": "https://i.imgur.com/tP5bvky.jpeg",
+      "defaultTab": false,
+      "icon": "assets/icons/tabs/icon-user.png",
+      "drawerIcon": {
+        "fontFamily": "CupertinoIcons",
+        "icon": "line_horizontal_3"
+      },
+      "subGeneralSetting": {
+        "web-t7t40gao4k": {
+          "enableClose": false,
+          "webViewMode": false,
+          "webUrl": "https://loscastillos.com.do/politica-de-entregas/",
+          "icon": "doc_text",
+          "enableBackward": true,
+          "title": "Política de Entregas",
+          "requiredLogin": false,
+          "iconFontFamily": "CupertinoIcons",
+          "script": "",
+          "enableForward": false
+        },
+        "about": {
+          "enableClose": false,
+          "webViewMode": false,
+          "webUrl": "https://loscastillos.com.do",
+          "enableBackward": true,
+          "requiredLogin": false,
+          "script": "",
+          "enableForward": false
+        },
+        "privacy": {
+          "enableClose": false,
+          "webViewMode": false,
+          "webUrl": "https://loscastillos.com.do/politicas-de-privacidad/",
+          "enableBackward": true,
+          "requiredLogin": false,
+          "script": "",
+          "enableForward": false
+        },
+        "web-zkyaam1xqj": {
+          "enableClose": false,
+          "webViewMode": false,
+          "webUrl": "https://loscastillos.com.do/politica-de-devoluciones/",
+          "icon": "doc_text",
+          "enableBackward": true,
+          "title": "Política de Devolución",
+          "requiredLogin": false,
+          "iconFontFamily": "CupertinoIcons",
+          "script": "",
+          "enableForward": false
+        }
+      },
+      "key": "pl8gkgsc10"
     },
     {
       "layout": "cart",
-      "icon": "assets/icons/tabs/icon-cart2.png"
+      "fontFamily": "CupertinoIcons",
+      "pos": 500,
+      "defaultTab": false,
+      "icon": "shopping_cart",
+      "key": "pl8gkgsc10"
     }
   ],
-  "searchSuggestion": [
-    "Here are some suggestions:",
-    "Print",
-    "T-Shirt",
-    "Jersey",
-    "Hoodie"
-  ]
+  "Drawer": {
+    "filter": 0,
+    "logoConfig": {
+      "marginRight": 0,
+      "width": 225,
+      "boxFit": "contain",
+      "marginBottom": 10,
+      "marginTop": 60,
+      "height": 72,
+      "marginLeft": 20
+    },
+    "enable": true,
+    "logo": "https://i.imgur.com/YjKfgtI.png",
+    "subDrawerItem": {},
+    "safeArea": true,
+    "items": [
+      {
+        "show": false,
+        "type": "home"
+      },
+      {
+        "show": false,
+        "type": "blog"
+      },
+      {
+        "show": false,
+        "type": "categories"
+      },
+      {
+        "show": false,
+        "type": "cart"
+      },
+      {
+        "show": false,
+        "type": "profile"
+      },
+      {
+        "show": true,
+        "type": "login"
+      },
+      {
+        "show": true,
+        "type": "category"
+      }
+    ],
+    "key": "pw4675oyig"
+  },
+  "AppBar": {
+    "elevation": 0,
+    "pinned": true,
+    "showOnScreens": [],
+    "enable": true,
+    "floating": true,
+    "alwaysShowAppBar": false,
+    "expandedItems": [],
+    "items": [
+      {
+        "backgroundColor": "0",
+        "paddingRight": 4,
+        "icon": "square_grid_2x2",
+        "type": "icon",
+        "marginLeft": 16,
+        "marginRight": 4,
+        "fontFamily": "CupertinoIcons",
+        "paddingBottom": 4,
+        "size": 40,
+        "pos": 100,
+        "action": "menu",
+        "textOpacity": 0.5,
+        "iconSize": 24,
+        "fontSize": 16,
+        "marginBottom": 4,
+        "paddingTop": 4,
+        "alignment": "center",
+        "radius": 18,
+        "paddingLeft": 4,
+        "fontWeight": "400",
+        "marginTop": 4,
+        "key": "k3tn82rcqy"
+      },
+      {
+        "paddingRight": 4,
+        "icon": "location",
+        "type": "logo",
+        "title": "TOY ZONE",
+        "marginRight": 4,
+        "fontFamily": "CupertinoIcons",
+        "paddingBottom": 4,
+        "pos": 200,
+        "action": "home",
+        "iconSize": 24,
+        "paddingTop": 4,
+        "radius": 0,
+        "fontWeight": "800",
+        "key": "qk2kt05xit",
+        "height": 0,
+        "backgroundColor": "#00000000",
+        "imageBoxFit": "scaleDown",
+        "marginLeft": 4,
+        "size": 20,
+        "width": 68,
+        "textOpacity": 0.8,
+        "fontSize": 18,
+        "marginBottom": 4,
+        "alignment": "center",
+        "paddingLeft": 4,
+        "marginTop": 4
+      },
+      {
+        "backgroundColor": "0",
+        "paddingRight": 4,
+        "icon": "shopping_cart",
+        "type": "icon",
+        "marginLeft": 4,
+        "marginRight": 16,
+        "fontFamily": "CupertinoIcons",
+        "paddingBottom": 4,
+        "size": 40,
+        "pos": 400,
+        "action": "cart",
+        "textOpacity": 0.5,
+        "iconSize": 24,
+        "fontSize": 16,
+        "marginBottom": 4,
+        "paddingTop": 4,
+        "alignment": "center",
+        "radius": 18,
+        "paddingLeft": 4,
+        "fontWeight": "400",
+        "marginTop": 4,
+        "key": "179zhrjyr7"
+      }
+    ],
+    "snap": true
+  },
+  "VerticalLayout": {
+    "showCartIcon": true,
+    "showStockStatus": false,
+    "hideStore": false,
+    "showCartIconColor": false,
+    "vPadding": 2,
+    "showQuantity": false,
+    "hPadding": 6,
+    "hidePrice": false,
+    "showHeart": false,
+    "layout": "menu",
+    "enableRating": true,
+    "imageRatio": 1.2,
+    "isVertical": true,
+    "hideTitle": false,
+    "showCartButton": false,
+    "name": "Por Categoría",
+    "cartIconRadius": 12,
+    "shuffle": false,
+    "key": "pl8gkgsc10"
+  }
 }

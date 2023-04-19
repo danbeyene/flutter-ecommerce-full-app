@@ -123,12 +123,13 @@ class _DigitsMobileVerifyScreenState extends State<DigitsMobileVerifyScreen>
     final snackBar = SnackBar(
       content: Text(message),
       duration: const Duration(seconds: 30),
-      action: SnackBarAction(
-        label: S.of(context).close,
-        onPressed: () {
-          // Some code to undo the change.
-        },
-      ),
+      showCloseIcon: true,
+      // action: SnackBarAction(
+      //   label: S.of(context).close,
+      //   onPressed: () {
+      //     // Some code to undo the change.
+      //   },
+      // ),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);

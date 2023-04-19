@@ -65,46 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
-  audio_service:
-    dependency: "direct main"
-    description:
-      name: audio_service
-      sha256: "7e86d7ce23caad605199f7b25e548fe7b618fb0c150fa0585f47a910fe7e7a67"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.18.9"
-  audio_service_platform_interface:
-    dependency: transitive
-    description:
-      name: audio_service_platform_interface
-      sha256: "2c3a1d52803931e836b9693547a71c0c3585ad54219d2214219ed5cfcc3c1af4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0"
-  audio_service_web:
-    dependency: transitive
-    description:
-      name: audio_service_web
-      sha256: "523e64ddc914c714d53eec2da85bba1074f08cf26c786d4efb322de510815ea7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
-  audio_session:
-    dependency: transitive
-    description:
-      name: audio_session
-      sha256: e4acc4e9eaa32436dfc5d7aed7f0a370f2d7bb27ee27de30d6c4f220c2a05c73
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.13"
-  audio_video_progress_bar:
-    dependency: "direct main"
-    description:
-      name: audio_video_progress_bar
-      sha256: "38d8efe20cd0ff2bfad648396ae3d4ba6f8058b7d8b6ee6cb26e3245eda58ddd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   awesome_card:
     dependency: "direct main"
     description:
@@ -249,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      sha256: "66f86e916d285c1a93d3b79587d94bd71984a66aac4ff74e524cfa7877f1395c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.5"
   clock:
     dependency: transitive
     description:
@@ -736,6 +704,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.7.2+3"
+  flutter_launcher_icons:
+    dependency: "direct dev"
+    description:
+      path: "."
+      ref: "7aab578231120ef39d37db34e07dce3c7995ee14"
+      resolved-ref: "7aab578231120ef39d37db34e07dce3c7995ee14"
+      url: "https://github.com/inspireui/flutter_launcher_icons.git"
+    source: git
+    version: "0.11.0+1"
   flutter_linkify:
     dependency: "direct main"
     description:
@@ -897,11 +874,10 @@ packages:
   flutter_swiper_null_safety:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "18e8d2d642ff9e0013fc4477c6d64c52732b463a"
-      url: "https://github.com/inspireui/flutter_swiper_null_safety"
-    source: git
+      name: flutter_swiper_null_safety
+      sha256: "5a855e0080d035c08e82f8b7fd2f106344943a30c9ab483b2584860a2f22eaaf"
+      url: "https://pub.dev"
+    source: hosted
     version: "1.0.2"
   flutter_test:
     dependency: transitive
@@ -1362,30 +1338,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.4"
-  just_audio:
-    dependency: "direct main"
-    description:
-      name: just_audio
-      sha256: "7a5057a4d05c8f88ee968cec6fdfe1015577d5184e591d5ac15ab16d8f5ecb17"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.31"
-  just_audio_platform_interface:
-    dependency: transitive
-    description:
-      name: just_audio_platform_interface
-      sha256: eff112d5138bea3ba544b6338b1e0537a32b5e1425e4d0dc38f732771cda7c84
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.0"
-  just_audio_web:
-    dependency: transitive
-    description:
-      name: just_audio_web
-      sha256: "89d8db6f19f3821bb6bf908c4bfb846079afb2ab575b783d781a6bf119e3abaf"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.7"
   libphonenumber_platform_interface:
     dependency: transitive
     description:
@@ -1974,7 +1926,7 @@ packages:
     source: hosted
     version: "0.0.2"
   rxdart:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: rxdart
       sha256: "3f7cb435edd213ee1daea38026f2bd1cd5768f3f1b0fae0f6cd1c5380a091f90"
@@ -2486,18 +2438,18 @@ packages:
     dependency: "direct main"
     description:
       name: webview_flutter
-      sha256: b6cd42db3ced5411f3d01599906156885b18e4188f7065a8a351eb84bee347e0
+      sha256: "47663d51a9061451aa3880a214ee9a65dcbb933b77bc44388e194279ab3ccaf6"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.6"
+    version: "4.0.7"
   webview_flutter_android:
     dependency: transitive
     description:
       name: webview_flutter_android
-      sha256: "5dd3f32b5c2d8f4bf9d05a349e4a65fa718eb137f396f336c3893d558a58fe84"
+      sha256: "9e223788e1954087dac30d813dc151f8e12f09f1139f116ce20b5658893f3627"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.2"
+    version: "3.4.4"
   webview_flutter_platform_interface:
     dependency: transitive
     description:

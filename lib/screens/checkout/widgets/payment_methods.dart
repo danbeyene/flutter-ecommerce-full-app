@@ -145,10 +145,11 @@ class _PaymentMethodsState extends State<PaymentMethods> with RazorDelegate {
                         cartModel.setPaymentMethod(model.paymentMethods
                             .firstWhere((item) => item.id == selectedId));
                       }
-
+/// update for temorarry to use only the first payment method.
                       return Column(
                         children: <Widget>[
-                          for (int i = 0; i < model.paymentMethods.length; i++)
+                          // for (int i = 0; i < model.paymentMethods.length; i++)
+                          for (int i = 0; i < 1; i++)
                             model.paymentMethods[i].enabled!
                                 ? Services().widget.renderPaymentMethodItem(
                                     context, model.paymentMethods[i], (i) {
@@ -288,13 +289,14 @@ class _PaymentMethodsState extends State<PaymentMethods> with RazorDelegate {
                 },
                 child: Text(
                   kPaymentConfig.enableReview
-                      ? S.of(context).goBack.toUpperCase()
+                      ? S.of(context).goBack.toTitleCase()
                       : kPaymentConfig.enableShipping
                           ? S.of(context).goBackToShipping
                           : S.of(context).goBackToAddress,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.secondary,
+                    fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize
                   ),
                 ),
               ),
@@ -319,7 +321,7 @@ class _PaymentMethodsState extends State<PaymentMethods> with RazorDelegate {
                   CupertinoIcons.check_mark_circled_solid,
                   size: 20,
                 ),
-                label: Text(S.of(context).placeMyOrder.toUpperCase()),
+                label: Text(S.of(context).placeMyOrder.toTitleCase(),style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),),
               ),
             ),
           ),

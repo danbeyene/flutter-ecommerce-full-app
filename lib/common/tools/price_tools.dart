@@ -83,7 +83,8 @@ class PriceTools {
 
     var currencies = kAdvanceConfig.currencies;
     var formatCurrency = NumberFormat.currency(
-      locale: kAdvanceConfig.defaultLanguage,
+      // locale: kAdvanceConfig.defaultLanguage,
+      locale: 'en_US',
       name: '',
       decimalDigits: defaultCurrency.decimalDigits,
     );
@@ -95,7 +96,8 @@ class PriceTools {
               item.currencyDisplay == currency) {
             defaultCurrency = item;
             formatCurrency = NumberFormat.currency(
-              locale: kAdvanceConfig.defaultLanguage,
+              // locale: kAdvanceConfig.defaultLanguage,
+              locale: 'en_US',
               name: '',
               decimalDigits: defaultCurrency.decimalDigits,
             );

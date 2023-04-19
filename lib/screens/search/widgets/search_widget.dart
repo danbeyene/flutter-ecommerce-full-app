@@ -120,6 +120,7 @@ class StateSearchScreen extends State<SearchWidget>
             _renderHeader(),
             SearchBox(
               // width: widthSearchBox,
+              showQRCode: false,
               controller: _searchFieldController,
               focusNode: _searchFieldNode,
               onChanged: _onSearchTextChange,

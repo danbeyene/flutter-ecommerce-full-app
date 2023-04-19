@@ -59,7 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m18(store) => "Más de ${store}";
 
-  static String m19(itemCount) => "${itemCount} items";
+  static String m19(itemCount) => "${itemCount} art.";
 
   static String m20(price) => "Total de opciones: ${price}";
 
@@ -605,7 +605,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hungarian": MessageLookupByLibrary.simpleMessage("húngaro"),
         "hungary": MessageLookupByLibrary.simpleMessage("Hungaro"),
         "iAgree": MessageLookupByLibrary.simpleMessage("Acepto los"),
-        "imIn": MessageLookupByLibrary.simpleMessage("estoy dentro"),
+        "imIn": MessageLookupByLibrary.simpleMessage("Activar"),
         "imageFeature":
             MessageLookupByLibrary.simpleMessage("Característica de imagen"),
         "imageGallery":
@@ -1103,7 +1103,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchPlace":
             MessageLookupByLibrary.simpleMessage("Lugar de búsqueda"),
         "searchingAddress":
-            MessageLookupByLibrary.simpleMessage("Dirección de búsqueda"),
+            MessageLookupByLibrary.simpleMessage("Buscar la dirección"),
         "secondsAgo": m23,
         "seeAll": MessageLookupByLibrary.simpleMessage("Ver Todos"),
         "seeNewAppConfig": MessageLookupByLibrary.simpleMessage(
@@ -1229,11 +1229,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "storeVacation":
             MessageLookupByLibrary.simpleMessage("Vacaciones en la tienda"),
         "stores": MessageLookupByLibrary.simpleMessage("Tiendas"),
-        "street": MessageLookupByLibrary.simpleMessage("calle"),
-        "street2": MessageLookupByLibrary.simpleMessage("Calle # 2"),
+        "street": MessageLookupByLibrary.simpleMessage("Dirección"),
+        "street2": MessageLookupByLibrary.simpleMessage("Dirección # 2"),
         "streetIsRequired": MessageLookupByLibrary.simpleMessage(
-            "El campo del nombre de la Calle es obligatorio"),
-        "streetName": MessageLookupByLibrary.simpleMessage("Calle"),
+            "El campo del nombre de la Dirección es obligatorio"),
+        "streetName": MessageLookupByLibrary.simpleMessage("Dirección"),
         "streetNameApartment":
             MessageLookupByLibrary.simpleMessage("Apartamento"),
         "streetNameBlock": MessageLookupByLibrary.simpleMessage("Blocqueado"),

@@ -205,10 +205,11 @@ class _ShippingMethodsState extends State<ShippingMethods> {
                   widget.onBack!();
                 },
                 child: Text(
-                  S.of(context).goBack.toUpperCase(),
+                  S.of(context).goBack.toTitleCase(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.secondary,
+                    fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize
                   ),
                 ),
               ),
@@ -264,7 +265,7 @@ class _ShippingMethodsState extends State<ShippingMethods> {
               label: Text((kPaymentConfig.enableReview
                       ? S.of(context).continueToReview
                       : S.of(context).continueToPayment)
-                  .toUpperCase()),
+                  .toTitleCase(),style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),),
             ),
           ),
         ],
@@ -278,6 +279,7 @@ class _ShippingMethodsState extends State<ShippingMethods> {
     }
 
     Widget deliveryWidget = DateTimePicker(
+      text: "Seleccione la fecha",
       onChanged: (DateTime datetime) {
         final orderDeliveryDate = OrderDeliveryDate(datetime);
         orderDeliveryDate.dateString =

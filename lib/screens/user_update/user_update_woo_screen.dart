@@ -344,6 +344,93 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                 ),
                                 if (!ServerConfig().isListingType) ...[
                                   const SizedBox(height: 16),
+                                  Text(S.of(context).country,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      )),
+                                  const SizedBox(height: 8),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color:
+                                        Theme.of(context).primaryColorLight,
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Consumer<UserUpdateModel>(
+                                      builder: (_, model, __) => TextField(
+                                        decoration: const InputDecoration(
+                                            border: InputBorder.none),
+                                        controller: model.shippingCountry,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Text(S.of(context).stateProvince,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      )),
+                                  const SizedBox(height: 8),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color:
+                                        Theme.of(context).primaryColorLight,
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Consumer<UserUpdateModel>(
+                                      builder: (_, model, __) => TextField(
+                                        decoration: const InputDecoration(
+                                            border: InputBorder.none),
+                                        controller: model.shippingState,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Text(S.of(context).city,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      )),
+                                  const SizedBox(height: 8),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color:
+                                        Theme.of(context).primaryColorLight,
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Consumer<UserUpdateModel>(
+                                      builder: (_, model, __) => TextField(
+                                        decoration: const InputDecoration(
+                                            border: InputBorder.none),
+                                        controller: model.shippingCity,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
                                   Text(S.of(context).streetName,
                                       style: TextStyle(
                                         fontSize: 16,
@@ -372,151 +459,66 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 16),
-                                  Text(S.of(context).streetNameBlock,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      )),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                        color:
-                                            Theme.of(context).primaryColorLight,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Consumer<UserUpdateModel>(
-                                      builder: (_, model, __) => TextField(
-                                        decoration: const InputDecoration(
-                                            border: InputBorder.none),
-                                        controller: model.shippingAddress2,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Text(S.of(context).city,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      )),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                        color:
-                                            Theme.of(context).primaryColorLight,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Consumer<UserUpdateModel>(
-                                      builder: (_, model, __) => TextField(
-                                        decoration: const InputDecoration(
-                                            border: InputBorder.none),
-                                        controller: model.shippingCity,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Text(S.of(context).stateProvince,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      )),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                        color:
-                                            Theme.of(context).primaryColorLight,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Consumer<UserUpdateModel>(
-                                      builder: (_, model, __) => TextField(
-                                        decoration: const InputDecoration(
-                                            border: InputBorder.none),
-                                        controller: model.shippingState,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Text(S.of(context).country,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      )),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                        color:
-                                            Theme.of(context).primaryColorLight,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Consumer<UserUpdateModel>(
-                                      builder: (_, model, __) => TextField(
-                                        decoration: const InputDecoration(
-                                            border: InputBorder.none),
-                                        controller: model.shippingCountry,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Text(S.of(context).zipCode,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      )),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                        color:
-                                            Theme.of(context).primaryColorLight,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Consumer<UserUpdateModel>(
-                                      builder: (_, model, __) => TextField(
-                                        decoration: const InputDecoration(
-                                            border: InputBorder.none),
-                                        controller: model.shippingPostcode,
-                                      ),
-                                    ),
-                                  ),
+                                  // const SizedBox(height: 16),
+                                  // Text(S.of(context).streetNameBlock,
+                                  //     style: TextStyle(
+                                  //       fontSize: 16,
+                                  //       fontWeight: FontWeight.w600,
+                                  //       color: Theme.of(context)
+                                  //           .colorScheme
+                                  //           .secondary,
+                                  //     )),
+                                  // const SizedBox(height: 8),
+                                  // Container(
+                                  //   padding: const EdgeInsets.symmetric(
+                                  //       horizontal: 10),
+                                  //   decoration: BoxDecoration(
+                                  //     borderRadius: BorderRadius.circular(5),
+                                  //     border: Border.all(
+                                  //       color:
+                                  //           Theme.of(context).primaryColorLight,
+                                  //       width: 1.5,
+                                  //     ),
+                                  //   ),
+                                  //   child: Consumer<UserUpdateModel>(
+                                  //     builder: (_, model, __) => TextField(
+                                  //       decoration: const InputDecoration(
+                                  //           border: InputBorder.none),
+                                  //       controller: model.shippingAddress2,
+                                  //     ),
+                                  //   ),
+                                  // ),
+
+
+                                  // const SizedBox(height: 16),
+                                  // Text(S.of(context).zipCode,
+                                  //     style: TextStyle(
+                                  //       fontSize: 16,
+                                  //       fontWeight: FontWeight.w600,
+                                  //       color: Theme.of(context)
+                                  //           .colorScheme
+                                  //           .secondary,
+                                  //     )),
+                                  // const SizedBox(height: 8),
+                                  // Container(
+                                  //   padding: const EdgeInsets.symmetric(
+                                  //       horizontal: 10),
+                                  //   decoration: BoxDecoration(
+                                  //     borderRadius: BorderRadius.circular(5),
+                                  //     border: Border.all(
+                                  //       color:
+                                  //           Theme.of(context).primaryColorLight,
+                                  //       width: 1.5,
+                                  //     ),
+                                  //   ),
+                                  //   child: Consumer<UserUpdateModel>(
+                                  //     builder: (_, model, __) => TextField(
+                                  //       decoration: const InputDecoration(
+                                  //           border: InputBorder.none),
+                                  //       controller: model.shippingPostcode,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   const SizedBox(height: 16),
                                   Text(S.of(context).streetNameApartment,
                                       style: TextStyle(

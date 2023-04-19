@@ -90,10 +90,11 @@ class _ShoppingCartSummaryState extends State<ShoppingCartSummary> {
     final snackBar = SnackBar(
       content: Text(S.of(context).warning(message)),
       duration: const Duration(seconds: 3),
-      action: SnackBarAction(
-        label: S.of(context).close,
-        onPressed: () {},
-      ),
+      showCloseIcon: true,
+      // action: SnackBarAction(
+      //   label: S.of(context).close,
+      //   onPressed: () {},
+      // ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

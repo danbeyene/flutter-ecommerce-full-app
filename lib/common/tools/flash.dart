@@ -317,15 +317,16 @@ class FlashHelper {
                   fontSize: isError ? 18.0 : 15.0,
                 ),
               ),
-              primaryAction: TextButton(
+              primaryAction: IconButton(
                 onPressed: () => controller.dismiss(null),
-                child: Text(
-                  S.of(context).close,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                  ),
-                ),
+                icon: Icon(Icons.close, color: Colors.white,),
+                // child: Text(
+                //   S.of(context).close,
+                //   style: const TextStyle(
+                //     color: Colors.white,
+                //     fontSize: 15.0,
+                //   ),
+                // ),
               ),
             ),
           );

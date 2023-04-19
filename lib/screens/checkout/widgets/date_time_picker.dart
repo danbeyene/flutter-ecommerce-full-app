@@ -153,7 +153,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
             hintStyle: widget.hintTextStyle,
             border: widget.border,
             prefixIcon: const Icon(CupertinoIcons.calendar),
-            suffixText: 'Change',
+            suffixText: 'Cambiar',
           ),
     );
   }

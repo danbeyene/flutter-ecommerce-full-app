@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart' as flutter;
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../common/config.dart';
 import '../../common/constants.dart';
@@ -46,17 +45,17 @@ mixin WebviewMixin {
     return true;
   }
 
-  Future<NavigationDecision> getNavigationDelegate(
-      NavigationRequest request) async {
+  Future<flutter.NavigationDecision> getNavigationDelegate(
+      flutter.NavigationRequest request) async {
     final url = request.url;
     printLog('[WebView] getNavigationDelegate: $url');
     final overridden = await overrideWebNavigation(url);
 
     if (overridden) {
-      return NavigationDecision.prevent;
+      return flutter.NavigationDecision.prevent;
     }
 
-    return NavigationDecision.navigate;
+    return flutter.NavigationDecision.navigate;
   }
 }
 
@@ -100,7 +99,7 @@ class _WebViewState extends State<WebView> with WebviewMixin, AppBarMixin {
   String html = '';
 
   User? get user => Provider.of<UserModel>(context, listen: true).user;
-  late final WebViewController controller;
+  late final flutter.WebViewController controller;
 
   flutter.WebViewController? _controller;
 
@@ -108,6 +107,8 @@ class _WebViewState extends State<WebView> with WebviewMixin, AppBarMixin {
       gestureRecognizers = {
     const foundation.Factory(EagerGestureRecognizer.new)
   };
+
+  late final flutter.PlatformWebViewControllerCreationParams params;
 
   @override
   void initState() {
@@ -120,12 +121,12 @@ class _WebViewState extends State<WebView> with WebviewMixin, AppBarMixin {
     }
 
     // Fixme: webview refactor
-    // if (isAndroid) flutter.WebView.platform = flutter.SurfaceAndroidWebView();
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    //if (isAndroid) flutter.WebView.platform = flutter.SurfaceAndroidWebView();
+    controller = flutter.WebViewController()
+      ..setJavaScriptMode(flutter.JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
-        NavigationDelegate(
+        flutter.NavigationDelegate(
           onProgress: (int progress) {
             if (progress == 100) {
               setState(() {
@@ -133,9 +134,11 @@ class _WebViewState extends State<WebView> with WebviewMixin, AppBarMixin {
               });
             }
           },
-          onPageStarted: (String url) {},
+          onPageStarted: (String url) {
+          },
           onPageFinished: (String url) => widget.onPageFinished!(url),
-          onWebResourceError: (WebResourceError error) {},
+          onWebResourceError: (flutter.WebResourceError error) {
+          },
           // onNavigationRequest: (NavigationRequest request) {},
         ),
       )

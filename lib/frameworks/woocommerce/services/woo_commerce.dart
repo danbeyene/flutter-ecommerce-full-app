@@ -1585,6 +1585,7 @@ class WooCommerceService extends BaseServices {
             kPaymentConfig.nativeOnePageCheckout ||
             kPaymentConfig.guestCheckout ||
             params['token'] == null) {
+
           var checkoutPageSlug =
               Map<String, dynamic>.from(kPaymentConfig.checkoutPageSlug);
           String? slug = checkoutPageSlug[lang!];

@@ -6,7 +6,7 @@ description: Mobile commerce app by Flutter
 # A version number is three numbers separated by dots, like 1.2.43 - followed by an optional build number separated by a +.
 # In Android, build-name is used as versionName while build-number used as versionCode.Read more about Android versioning at https://developer.android.com/studio/publish/versioning
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion. Read more about iOS versioning at https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+3000
+version: 0.2.0+20301
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -77,7 +77,8 @@ dependencies:
 
   # WEB TOOLS
   html_unescape: 2.0.0
-  webview_flutter: 4.0.6
+  webview_flutter: ^4.0.7
+#  webview_flutter: 4.0.6
   webview_flutter_web: 0.2.2+1
   responsive_builder: 0.6.4
   flutter_inappwebview: 5.7.2+3
@@ -177,8 +178,9 @@ dependencies:
 
 
   ### Flutter 3 fix warning
-  flutter_swiper_null_safety:
-    git: https://github.com/inspireui/flutter_swiper_null_safety
+#  flutter_swiper_null_safety:
+#    git: https://github.com/inspireui/flutter_swiper_null_safety
+  flutter_swiper_null_safety: ^1.0.2
   flare_flutter:
     git:
       url: https://github.com/inspireui/Flare-Flutter.git
@@ -228,10 +230,10 @@ dev_dependencies:
 #  dependency_validator: ^3.2.2  # pub run dependency_validator
 
 ### Enable Generate Icon library
-#  flutter_launcher_icons:
-#    git:
-#      url: https://github.com/inspireui/flutter_launcher_icons.git
-#      ref: 7aab578231120ef39d37db34e07dce3c7995ee14
+  flutter_launcher_icons:
+    git:
+      url: https://github.com/inspireui/flutter_launcher_icons.git
+      ref: 7aab578231120ef39d37db34e07dce3c7995ee14
 
 #  Run this script to generate the app icon: flutter pub run flutter_launcher_icons:main
 

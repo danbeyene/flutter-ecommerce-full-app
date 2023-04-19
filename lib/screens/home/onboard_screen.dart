@@ -68,47 +68,46 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           FluxImage(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height-MediaQuery.of(context).size.height/4,
             imageUrl: imagePath,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.fitHeight,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: _onTapSignIn,
-                  child: Text(
-                    S.of(context).signIn,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-                Text(
-                  '    |    ',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              GestureDetector(
+                onTap: _onTapSignIn,
+                child: Text(
+                  S.of(context).signIn,
                   style: TextStyle(
-                      color: Theme.of(context).primaryColor, fontSize: 20.0),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    setHasSeen();
-                    NavigateTools.navigateRegister(
-                      context,
-                      replacement: true,
-                    );
-                  },
-                  child: Text(
-                    S.of(context).signUp,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 20.0,
-                    ),
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 20.0,
                   ),
                 ),
-              ],
-            ),
+              ),
+              Text(
+                '    |    ',
+                style: TextStyle(
+                    color: Theme.of(context).primaryColor, fontSize: 20.0),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  setHasSeen();
+                  NavigateTools.navigateRegister(
+                    context,
+                    replacement: true,
+                  );
+                },
+                child: Text(
+                  S.of(context).signUp,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       );
@@ -121,8 +120,10 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
           title: data[i]['title'],
           description: data[i]['desc'],
           marginTitle: const EdgeInsets.only(
-            top: 125.0,
-            bottom: 50.0,
+            // top: 125.0,
+            // bottom: 50.0,
+            top: 0.0,
+            bottom: 0.0,
           ),
           maxLineTextDescription: 2,
           styleTitle: const TextStyle(
@@ -131,17 +132,20 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
             color: kGrey900,
           ),
           backgroundColor: Colors.white,
-          marginDescription: const EdgeInsets.fromLTRB(20.0, 75.0, 20.0, 0),
+          marginDescription: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0),
+          // marginDescription: const EdgeInsets.fromLTRB(20.0, 75.0, 20.0, 0),
           styleDescription: const TextStyle(
             fontSize: 15.0,
             color: kGrey600,
           ),
-          foregroundImageFit: BoxFit.fitWidth,
+          foregroundImageFit: BoxFit.fitHeight,
           centerWidget: isLastItem
               ? renderLoginWidget(data[i]['image'])
               : FluxImage(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height-MediaQuery.of(context).size.height/10,
                   imageUrl: data[i]['image'],
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fitHeight,
                 ));
       slides.add(slide);
     }
@@ -184,7 +188,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
               ),
             );
           }),
-          iconLanguage(),
+          // iconLanguage(),
         ],
       ),
     );

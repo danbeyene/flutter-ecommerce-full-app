@@ -247,7 +247,7 @@ class _ReviewState extends BaseScreen<ReviewScreen> {
                   widget.onBack!();
                 },
                 child: Text(
-                  S.of(context).goBack.toUpperCase(),
+                  S.of(context).goBack.toTitleCase(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.secondary,
@@ -277,7 +277,7 @@ class _ReviewState extends BaseScreen<ReviewScreen> {
                   CupertinoIcons.creditcard,
                   size: 18,
                 ),
-                label: Text(S.of(context).continueToPayment.toUpperCase()),
+                label: Text(S.of(context).continueToPayment.toTitleCase()),
               ),
             ),
           ),

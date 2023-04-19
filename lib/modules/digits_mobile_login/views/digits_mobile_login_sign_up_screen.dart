@@ -77,12 +77,13 @@ class _RegistrationScreenState extends State<DigitsMobileLoginSignUpScreen> {
       final snackBar = SnackBar(
         content: Text(text),
         duration: const Duration(seconds: 10),
-        action: SnackBarAction(
-          label: S.of(context).close,
-          onPressed: () {
-            // Some code to undo the change.
-          },
-        ),
+        showCloseIcon: true,
+        // action: SnackBarAction(
+        //   label: S.of(context).close,
+        //   onPressed: () {
+        //     // Some code to undo the change.
+        //   },
+        // ),
       );
 
       _scaffoldMessengerKey.currentState?.showSnackBar(snackBar);

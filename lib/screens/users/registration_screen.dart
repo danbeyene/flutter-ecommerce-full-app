@@ -354,7 +354,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             RichText(
                               maxLines: 2,
                               text: TextSpan(
-                                text: S.current.bySignup,
+                                text: '${S.current.bySignup} ',
                                 style: Theme.of(context).textTheme.bodyLarge,
                                 children: <TextSpan>[
                                   TextSpan(

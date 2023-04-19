@@ -158,6 +158,7 @@ class _ProductSearchViewState extends State<ProductSearchView>
             // _renderHeader(),
             SearchBox(
               // width: widthSearchBox,
+              showQRCode:false,
               autoFocus: widget.autoFocusSearch,
               controller: _searchFieldController,
               focusNode: _searchFieldNode,

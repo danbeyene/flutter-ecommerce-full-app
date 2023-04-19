@@ -405,7 +405,7 @@ extension on _ShippingAddressState {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 150,
+            width: 165,
             child: OutlinedButton.icon(
               style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
               onPressed: () {
@@ -422,13 +422,16 @@ extension on _ShippingAddressState {
                   );
                 }
               },
-              icon: const Icon(
-                CupertinoIcons.plus_app,
-                size: 20,
+              icon: const Padding(
+                padding: EdgeInsets.only(left: 5),
+                child: Icon(
+                  CupertinoIcons.plus_app,
+                  size: 20,
+                ),
               ),
               label: Text(
-                S.of(context).saveAddress.toUpperCase(),
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                S.of(context).saveAddress.toTitleCase(),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: Theme.of(context).colorScheme.secondary,
                     ),
               ),
@@ -443,9 +446,12 @@ extension on _ShippingAddressState {
                 elevation: 0.0,
                 padding: EdgeInsets.zero,
               ),
-              icon: const Icon(
-                Icons.local_shipping_outlined,
-                size: 18,
+              icon: const Padding(
+                padding: EdgeInsets.only(left: 5),
+                child: Icon(
+                  Icons.local_shipping_outlined,
+                  size: 18,
+                ),
               ),
               onPressed: _onNext,
               label: Text(
@@ -454,10 +460,10 @@ extension on _ShippingAddressState {
                         : kPaymentConfig.enableReview
                             ? S.of(context).continueToReview
                             : S.of(context).continueToPayment)
-                    .toUpperCase(),
+                    .toTitleCase(),
                 style: Theme.of(context)
                     .textTheme
-                    .bodySmall!
+                    .bodyLarge!
                     .copyWith(color: Colors.white),
               ),
             ),

@@ -204,13 +204,12 @@ class LoginSMSScreenState<T extends LoginSMSScreen> extends State<T>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(S.of(context).dontHaveAccount),
+                            Text('${S.of(context).dontHaveAccount} '),
                             GestureDetector(
                               onTap: () {
                                 NavigateTools.navigateRegister(context);
                               },
-                              child: Text(
-                                ' ${S.of(context).signup}',
+                              child: Text(S.of(context).signup,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context).primaryColor,
@@ -256,12 +255,13 @@ class LoginSMSScreenState<T extends LoginSMSScreen> extends State<T>
     final snackBar = SnackBar(
       content: Text('⚠️: $message'),
       duration: const Duration(seconds: 30),
-      action: SnackBarAction(
-        label: S.of(context).close,
-        onPressed: () {
-          // Some code to undo the change.
-        },
-      ),
+      showCloseIcon: true,
+      // action: SnackBarAction(
+      //   label: S.of(context).close,
+      //   onPressed: () {
+      //     // Some code to undo the change.
+      //   },
+      // ),
     );
 
     ScaffoldMessenger.of(context)

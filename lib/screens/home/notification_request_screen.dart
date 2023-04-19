@@ -99,7 +99,7 @@ class _NotificationRequestScreenState extends State<NotificationRequestScreen>
               Expanded(
                 flex: 3,
                 child: Lottie.asset(
-                  'assets/images/get_notified.json',
+                  'assets/images/notification.json',
                   alignment: Alignment.center,
                 ),
               ),
