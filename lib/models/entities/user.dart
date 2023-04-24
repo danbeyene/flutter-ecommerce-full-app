@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 
 import '../../common/constants.dart';
 import '../../common/tools.dart';
+import '../../data/boxes.dart';
 import '../serializers/user.dart';
 import 'user_address.dart';
 
 class User {
   String? id;
   bool? loggedIn;
+  List? userRoles;
   String? name;
   String? firstName;
   String? lastName;
@@ -35,6 +37,7 @@ class User {
   User.init({
     this.id,
     this.loggedIn,
+    this.userRoles,
     this.name,
     this.firstName,
     this.lastName,
@@ -88,7 +91,8 @@ class User {
       } else {
         roles = roleJson as List;
       }
-
+      userRoles = roles;
+      print('user role is =================================== ${roles.toString()}');
       var role = roles.firstWhere(
           (item) => ((item == 'seller') ||
               (item == 'wcfm_vendor') ||
@@ -264,7 +268,8 @@ class User {
       'isVender': isVender,
       'billing': billing?.toJson(),
       'jwtToken': jwtToken,
-      'role': role
+      'role': role,
+      'userRoles':userRoles
     };
   }
 
@@ -289,6 +294,8 @@ class User {
         billing = Billing.fromJson(json['billing']);
       }
       role = json['role'];
+      userRoles = json['userRoles'];
+      UserBox().userRole = userRoles;
     } catch (e) {
       printLog(e.toString());
     }
@@ -342,6 +349,7 @@ class User {
       }
 
       isVender = false;
+      userRoles=roles;
       if (roles.isNotEmpty) {
         role = roles.first;
         if (roles.contains('seller') ||

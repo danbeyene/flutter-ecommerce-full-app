@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:intl/intl.dart';
 import 'package:quiver/strings.dart';
 
+import '../../data/boxes.dart';
 import '../../models/entities/currency.dart';
-import '../../models/index.dart' show AddonsOption, Product;
+import '../../models/index.dart' show AddonsOption, Product, User;
 import '../config.dart' show kAdvanceConfig;
 import '../constants.dart' show printError;
 
@@ -14,11 +17,34 @@ class PriceTools {
     String? currency, {
     bool? onSale,
   }) {
-    var price = double.tryParse(onSale == true
+
+    var userRoles = UserBox().userRole;
+    String? discountPrice;
+    var metaData=product.metaData;
+    if(userRoles!=null){
+      for(var data in metaData){
+        if(data['key']=='festiUserRolePrices'){
+          // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+          // print('this is user roles ====================== ${userRoles}');
+          Map discountMapValue = jsonDecode(data['value']);
+          for(var role in userRoles){
+            if(role == 'vendedor'){
+              // discountPrice = discountMapValue['vendedor'];
+              // print('this is vendedor discount price ====================== ${discountPrice}');
+            }else if(role == 'minimarket'){
+              // discountPrice = discountMapValue['minimarket'];
+              // print('this is minimarket discount price ====================== ${discountPrice}');
+            }
+          }
+        }
+      }
+    }
+
+    var price = double.tryParse(discountPrice ?? (onSale == true
             ? (isNotBlank(product.salePrice)
                 ? product.salePrice!
                 : product.price!)
-            : product.price!) ??
+            : product.price!)) ??
         0.0;
     price += selectedOptions
         .map((e) => double.tryParse(e.price ?? '0.0') ?? 0.0)
@@ -34,8 +60,30 @@ class PriceTools {
     bool? onSale,
     List<AddonsOption>? selectedOptions,
   }) {
+    var userRoles = UserBox().userRole;
+    String? discountPrice;
+    var metaData=product?.metaData;
+    if(metaData!=null && userRoles!=null){
+      for(var data in metaData){
+        if(data['key']=='festiUserRolePrices'){
+          // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+          // print('this is user roles ====================== ${userRoles}');
+          Map discountMapValue = jsonDecode(data['value']);
+          for(var role in userRoles){
+            if(role == 'vendedor'){
+              discountPrice = discountMapValue['vendedor'];
+              // print('this is vendedor discount price ====================== ${discountPrice}');
+            }else if(role == 'minimarket'){
+              discountPrice = discountMapValue['minimarket'];
+              // print('this is minimarket discount price ====================== ${discountPrice}');
+            }
+          }
+        }
+      }
+    }
+
     var price = double.tryParse(
-            '${onSale == true ? (isNotBlank(product.salePrice) ? product.salePrice : product.price) : product.price}') ??
+            '${discountPrice ?? (onSale == true ? (isNotBlank(product.salePrice) ? product.salePrice : product.price) : product.price)}') ??
         0.0;
     if (selectedOptions != null && selectedOptions.isNotEmpty) {
       price += selectedOptions
@@ -47,13 +95,42 @@ class PriceTools {
 
   static String? getPriceProductValue(Product? product, {bool? onSale}) {
     try {
-      var price = onSale == true
+      var userRoles = UserBox().userRole;
+      String? discountPrice;
+      var metaData=product?.metaData;
+      if(metaData!=null && userRoles!=null){
+        for(var data in metaData){
+           if(data['key']=='festiUserRolePrices'){
+             // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+             // print('this is user roles ====================== ${userRoles}');
+             Map discountMapValue = jsonDecode(data['value']);
+             for(var role in userRoles){
+               if(role == 'vendedor'){
+                 discountPrice = discountMapValue['vendedor'];
+                 // print('this is vendedor discount price ====================== ${discountPrice}');
+               }else if(role == 'minimarket'){
+                 discountPrice = discountMapValue['minimarket'];
+                 // print('this is minimarket discount price ====================== ${discountPrice}');
+               }
+             }
+           }
+        }
+      }
+
+      var price = discountPrice ?? (onSale == true
           ? (isNotBlank(product!.salePrice)
-              ? product.salePrice ?? '0'
-              : product.price)
+          ? product.salePrice ?? '0'
+          : product.price)
           : (isNotBlank(product!.regularPrice)
-              ? product.regularPrice ?? '0'
-              : product.price);
+          ? product.regularPrice ?? '0'
+          : product.price));
+      // var price = onSale == true
+      //     ? (isNotBlank(product!.salePrice)
+      //         ? product.salePrice ?? '0'
+      //         : product.price)
+      //     : (isNotBlank(product!.regularPrice)
+      //         ? product.regularPrice ?? '0'
+      //         : product.price);
       return price;
     } catch (err, trace) {
       printError(err, trace);

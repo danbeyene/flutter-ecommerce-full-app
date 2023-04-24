@@ -35,6 +35,7 @@ class Product {
   String? permalink;
   String? price;
   String? regularPrice;
+
   String? salePrice;
   String? maxPrice;
   String? minPrice;

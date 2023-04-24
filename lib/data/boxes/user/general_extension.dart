@@ -66,6 +66,23 @@ extension UserGeneralSettingsExtension on UserBox {
     box.put(BoxKeys.userInfo, rawData);
   }
 
+  List? get userRole {
+    final rawData = box.get(
+      BoxKeys.userRole,
+      defaultValue: null,
+    );
+    return rawData;
+  }
+
+  set userRole(List? value) {
+    if (value == null) {
+      box.delete(BoxKeys.userRole);
+      return;
+    }
+    final rawData = value;
+    box.put(BoxKeys.userRole, rawData);
+  }
+
   User? get deliveryUser {
     final Map? rawData = box.get(
       BoxKeys.deliveryUser,

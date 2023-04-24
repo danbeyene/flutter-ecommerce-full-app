@@ -33,7 +33,11 @@ class ShoppingCartRow extends StatelessWidget with ActionButtonMixin {
   Widget build(BuildContext context) {
     var currency = Provider.of<AppModel>(context).currency;
     final currencyRate = Provider.of<AppModel>(context).currencyRate;
-
+    // debugPrint('addons options ======================== ${addonsOptions}');
+    // debugPrint('product ======================== ${product}');
+    // debugPrint('variation ======================== ${variation}');
+    // debugPrint('currencyRate ======================== ${currencyRate}');
+    // debugPrint('currency ======================== ${currency}');
     final price = Services().widget.getPriceItemInCart(
         product!, variation, currencyRate, currency,
         selectedOptions: addonsOptions);

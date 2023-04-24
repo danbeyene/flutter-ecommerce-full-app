@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiver/strings.dart';
@@ -5,6 +7,7 @@ import 'package:quiver/strings.dart';
 import '../../../common/config.dart';
 import '../../../common/constants.dart';
 import '../../../common/tools.dart';
+import '../../../data/boxes.dart';
 import '../../../generated/l10n.dart';
 import '../../../models/index.dart'
     show AppModel, Product, ProductModel, ProductVariation;
@@ -39,26 +42,50 @@ class _ProductTitleState extends BaseScreen<ProductTitle> {
   // ignore: always_declare_return_types
   getProductPrice() {
     try {
-      regularPrice = productVariation != null
+
+      var userRoles = UserBox().userRole;
+      String? discountPrice;
+      var metaData=widget.product?.metaData;
+      if(metaData!=null && userRoles!=null){
+        for(var data in metaData){
+          if(data['key']=='festiUserRolePrices'){
+            // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+            // print('this is user roles ====================== ${userRoles}');
+            Map discountMapValue = jsonDecode(data['value']);
+            for(var role in userRoles){
+              if(role == 'vendedor'){
+                discountPrice = discountMapValue['vendedor'];
+                // print('this is vendedor discount price ====================== ${discountPrice}');
+              }else if(role == 'minimarket'){
+                discountPrice = discountMapValue['minimarket'];
+                // print('this is minimarket discount price ====================== ${discountPrice}');
+              }
+            }
+          }
+        }
+      }
+
+
+      regularPrice = discountPrice?? (productVariation != null
           ? productVariation!.regularPrice
-          : widget.product!.regularPrice;
+          : widget.product!.regularPrice);
       onSale = productVariation != null
           ? productVariation!.onSale ?? false
           : widget.product!.onSale ?? false;
-      price = productVariation != null &&
-              (productVariation?.price?.isNotEmpty ?? false)
+      price = discountPrice??(productVariation != null &&
+          (productVariation?.price?.isNotEmpty ?? false)
           ? productVariation!.price
           : isNotBlank(widget.product!.price)
-              ? widget.product!.price
-              : widget.product!.regularPrice;
+          ? widget.product!.price
+          : widget.product!.regularPrice);
 
       /// update the Sale price
       if (onSale) {
-        price = productVariation != null
+        price = discountPrice??(productVariation != null
             ? productVariation!.salePrice
             : isNotBlank(widget.product!.salePrice)
-                ? widget.product!.salePrice
-                : widget.product!.price;
+            ? widget.product!.salePrice
+            : widget.product!.price);
         dateOnSaleTo = productVariation != null
             ? productVariation!.dateOnSaleTo
             : widget.product!.dateOnSaleTo;

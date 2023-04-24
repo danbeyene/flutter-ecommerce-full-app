@@ -45,6 +45,7 @@ class BoxKeys {
   static const String hasAgreedPrivacy = 'hasAgreedPrivacy';
   static const String hasAnswerAgeRestriction = 'hasAnswerAgeRestriction';
   static const String userInfo = 'userInfo';
+  static const String userRole = 'userRole';
   static const String deliveryUser = 'deliveryUser';
   static const String vendorUser = 'vendorUser';
   static const String opencartCookie = 'opencartCookie';
