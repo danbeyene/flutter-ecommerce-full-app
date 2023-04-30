@@ -112,6 +112,23 @@ class _DateTimePickerState extends State<DateTimePicker> {
       final datePicked = value;
       showTimePicker(
         context: context,
+        builder: (context, child) {
+          final Widget mediaQueryWrapper = MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              alwaysUse24HourFormat: false,
+            ),
+            child: child!,
+          );
+          // A hack to use the es_US dateTimeFormat value.
+          if (Localizations.localeOf(context).languageCode == 'es') {
+            return Localizations.override(
+              context: context,
+              locale: const Locale('es', 'US'),
+              child: mediaQueryWrapper,
+            );
+          }
+          return mediaQueryWrapper;
+        },
         initialTime: const TimeOfDay(hour: 0, minute: 0),
         cancelText: S.of(context).cancel,
         confirmText: S.of(context).confirm,

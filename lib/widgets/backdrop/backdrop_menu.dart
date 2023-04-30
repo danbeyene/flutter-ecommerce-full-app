@@ -479,11 +479,11 @@ class _BackdropMenuState extends State<BackdropMenu> {
           ],
 
           /// filter by tags
-          widget.isUseBlog
-              ? const SizedBox()
-              : BackDropTagMenu(
-                  onChanged: (tagId) => _onFilter(tagId: tagId),
-                ),
+          // widget.isUseBlog
+          //     ? const SizedBox()
+          //     : BackDropTagMenu(
+          //         onChanged: (tagId) => _onFilter(tagId: tagId),
+          //       ),
 
           if (widget.showCategory)
             CategoryMenu(

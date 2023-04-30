@@ -20,7 +20,7 @@ import package_info_plus_macos
 import path_provider_foundation
 import photo_manager
 import rive_common
-import shared_preferences_macos
+import shared_preferences_foundation
 import speech_to_text_macos
 import sqflite
 import url_launcher_macos

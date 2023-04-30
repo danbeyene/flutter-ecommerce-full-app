@@ -232,7 +232,7 @@ Map<String, dynamic> environment = {
   "firebaseDynamicLinkConfig": {
     "iOSAppStoreId": "1510322788",
     "androidPackageName": "com.shop.loscastillos",
-    "isEnabled": true,
+    "isEnabled": false,
     "androidAppMinimumVersion": 1,
     "link": "https://loscastillos.com.do",
     "uriPrefix": "https://loscastillos.page.link",
@@ -471,7 +471,7 @@ Map<String, dynamic> environment = {
       "description": "Online chat"
     },
     {
-      "app": "https://web.whatsapp.com/send?phone=18096841690",
+      "app": "https://wa.me/18096841690",
       "description": "WhatsApp",
       "iconData": "whatsapp"
     },
@@ -495,17 +495,22 @@ Map<String, dynamic> environment = {
   "splashScreen": {
     "duration": 3000,
     "image":
-        "assets/images/splash.png",
-    "animationName": "fluxstore",
-    "backgroundColor": "#ffffff",
-    "paddingBottom": 0,
+        "assets/images/splash.json",
     "enable": true,
-    "paddingRight": 0,
-    "boxFit": "cover",
-    "paddingTop": 0,
-    "type": "zoom-in",
-    "paddingLeft": 0
+    "type": "lottie",
   },
+//   "image":
+//   "assets/images/splash.png",
+//   "animationName": "fluxstore",
+//   "backgroundColor": "#ffffff",
+//   "paddingBottom": 0,
+//   "enable": true,
+//   "paddingRight": 0,
+//   "boxFit": "cover",
+//   "paddingTop": 0,
+//   "type": "zoom-in",
+//   "paddingLeft": 0
+// },
   "darkConfig": {
     "MainColor": "ffff9a12",
     "logo": "https://i.imgur.com/6NkqJMq.png"
