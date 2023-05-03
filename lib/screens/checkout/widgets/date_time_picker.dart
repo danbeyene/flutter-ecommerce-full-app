@@ -90,7 +90,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
               initialDateTime: _currentDateTime,
               minimumDate: widget.minimumDate,
               maximumDate: widget.maximumDate,
-              use24hFormat: true,
+              use24hFormat: false,
               minuteInterval: 1,
               mode: CupertinoDatePickerMode.dateAndTime,
             ),
