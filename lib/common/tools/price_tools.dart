@@ -18,8 +18,10 @@ class PriceTools {
     bool? onSale,
   }) {
 
+    var salesPrice = product.salePrice;
+    var normalPrice = product.price;
+
     var userRoles = UserBox().userRole;
-    String? discountPrice;
     var metaData=product.metaData;
     if(userRoles!=null){
       for(var data in metaData){
@@ -29,22 +31,36 @@ class PriceTools {
           Map discountMapValue = jsonDecode(data['value']);
           for(var role in userRoles){
             if(role == 'vendedor'){
-              // discountPrice = discountMapValue['vendedor'];
-              // print('this is vendedor discount price ====================== ${discountPrice}');
+              var regularDiscountPrice = discountMapValue['vendedor'];
+              var salesDiscountPrice;
+              if(discountMapValue['salePrice'] !=null){
+                salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+                salesPrice=salesDiscountPrice;
+              }
+              normalPrice=regularDiscountPrice;
+              // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+              // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
             }else if(role == 'minimarket'){
-              // discountPrice = discountMapValue['minimarket'];
-              // print('this is minimarket discount price ====================== ${discountPrice}');
+              var regularDiscountPrice = discountMapValue['minimarket'];
+              var salesDiscountPrice;
+              if(discountMapValue['salePrice'] !=null){
+                salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+                salesPrice=salesDiscountPrice;
+              }
+              normalPrice=regularDiscountPrice;
+              // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+              // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
             }
           }
         }
       }
     }
 
-    var price = double.tryParse(discountPrice ?? (onSale == true
-            ? (isNotBlank(product.salePrice)
-                ? product.salePrice!
-                : product.price!)
-            : product.price!)) ??
+    var price = double.tryParse(onSale == true
+        ? (isNotBlank(salesPrice)
+        ? salesPrice!
+        : normalPrice!)
+        : normalPrice!) ??
         0.0;
     price += selectedOptions
         .map((e) => double.tryParse(e.price ?? '0.0') ?? 0.0)
@@ -60,8 +76,10 @@ class PriceTools {
     bool? onSale,
     List<AddonsOption>? selectedOptions,
   }) {
+    var salesPrice = product.salePrice;
+    var normalPrice = product.price;
+
     var userRoles = UserBox().userRole;
-    String? discountPrice;
     var metaData=product?.metaData;
     if(metaData!=null && userRoles!=null){
       for(var data in metaData){
@@ -71,11 +89,25 @@ class PriceTools {
           Map discountMapValue = jsonDecode(data['value']);
           for(var role in userRoles){
             if(role == 'vendedor'){
-              discountPrice = discountMapValue['vendedor'];
-              // print('this is vendedor discount price ====================== ${discountPrice}');
+              var regularDiscountPrice = discountMapValue['vendedor'];
+              var salesDiscountPrice;
+              if(discountMapValue['salePrice'] !=null){
+                salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+                salesPrice=salesDiscountPrice;
+              }
+              normalPrice=regularDiscountPrice;
+              // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+              // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
             }else if(role == 'minimarket'){
-              discountPrice = discountMapValue['minimarket'];
-              // print('this is minimarket discount price ====================== ${discountPrice}');
+              var regularDiscountPrice = discountMapValue['minimarket'];
+              var salesDiscountPrice;
+              if(discountMapValue['salePrice'] !=null){
+                salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+                salesPrice=salesDiscountPrice;
+              }
+              normalPrice=regularDiscountPrice;
+              // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+              // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
             }
           }
         }
@@ -83,7 +115,7 @@ class PriceTools {
     }
 
     var price = double.tryParse(
-            '${discountPrice ?? (onSale == true ? (isNotBlank(product.salePrice) ? product.salePrice : product.price) : product.price)}') ??
+            '${onSale == true ? (isNotBlank(salesPrice) ? salesPrice : normalPrice) : normalPrice}') ??
         0.0;
     if (selectedOptions != null && selectedOptions.isNotEmpty) {
       price += selectedOptions
@@ -95,35 +127,57 @@ class PriceTools {
 
   static String? getPriceProductValue(Product? product, {bool? onSale}) {
     try {
+
+      var salesPrice = product?.salePrice;
+      var normalPrice = product?.price;
+      var regularrPrice = product?.regularPrice;
+
       var userRoles = UserBox().userRole;
-      String? discountPrice;
       var metaData=product?.metaData;
       if(metaData!=null && userRoles!=null){
         for(var data in metaData){
-           if(data['key']=='festiUserRolePrices'){
-             // print('this is discount value ====================== ${jsonDecode(data['value'])}');
-             // print('this is user roles ====================== ${userRoles}');
-             Map discountMapValue = jsonDecode(data['value']);
-             for(var role in userRoles){
-               if(role == 'vendedor'){
-                 discountPrice = discountMapValue['vendedor'];
-                 // print('this is vendedor discount price ====================== ${discountPrice}');
-               }else if(role == 'minimarket'){
-                 discountPrice = discountMapValue['minimarket'];
-                 // print('this is minimarket discount price ====================== ${discountPrice}');
-               }
-             }
-           }
+          if(data['key']=='festiUserRolePrices'){
+            // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+            // print('this is user roles ====================== ${userRoles}');
+            Map discountMapValue = jsonDecode(data['value']);
+            for(var role in userRoles){
+              if(role == 'vendedor'){
+                var regularDiscountPrice = discountMapValue['vendedor'];
+                var salesDiscountPrice;
+                if(discountMapValue['salePrice'] !=null){
+                  salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+                  salesPrice=salesDiscountPrice;
+                }
+                normalPrice=regularDiscountPrice;
+                regularrPrice=regularDiscountPrice;
+                // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+                // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
+                // print('detail ======== this is vendedor regular price ====================== ${regularrPrice}');
+              }else if(role == 'minimarket'){
+                var regularDiscountPrice = discountMapValue['minimarket'];
+                var salesDiscountPrice;
+                if(discountMapValue['salePrice'] !=null){
+                  salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+                  salesPrice=salesDiscountPrice;
+                }
+                normalPrice=regularDiscountPrice;
+                regularrPrice=regularDiscountPrice;
+                // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+                // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
+                // print('detail ========  this is minimarket regular price ====================== ${regularrPrice}');
+              }
+            }
+          }
         }
       }
 
-      var price = discountPrice ?? (onSale == true
-          ? (isNotBlank(product!.salePrice)
-          ? product.salePrice ?? '0'
-          : product.price)
-          : (isNotBlank(product!.regularPrice)
-          ? product.regularPrice ?? '0'
-          : product.price));
+      var price = onSale == true
+          ? (isNotBlank(salesPrice)
+          ? salesPrice ?? '0'
+          : normalPrice)
+          : (isNotBlank(regularrPrice)
+          ? regularrPrice ?? '0'
+          : normalPrice);
       // var price = onSale == true
       //     ? (isNotBlank(product!.salePrice)
       //         ? product.salePrice ?? '0'

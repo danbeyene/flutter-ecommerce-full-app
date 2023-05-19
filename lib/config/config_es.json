@@ -276,7 +276,7 @@
       "hidePrice": false,
       "rows": 1,
       "enableBottomAddToCart": false,
-      "layout": "largeCard",
+      "layout": "twoColumn",
       "enableRating": true,
       "imageRatio": 1.2,
       "hideTitle": false,
@@ -314,12 +314,6 @@
     }
   ],
   "Setting": {
-    "MainColor": "ffff9a12",
-    "FontFamily": "Nunito",
-    "FontHeader": "Nunito",
-    "ProductListLayout": "list",
-    "StickyHeader": false,
-    "ShowChat": true,
     "TabBarConfig": {
       "enableOnTop": false,
       "color": null,
@@ -370,7 +364,13 @@
       "paddingLeft": 0,
       "marginTop": 0
     },
-    "ProductDetail": "simpleType"
+    "FontFamily": "Nunito",
+    "FontHeader": "Nunito",
+    "ProductDetail": "simpleType",
+    "MainColor": "ffff9a12",
+    "ShowChat": true,
+    "ProductListLayout": "list",
+    "StickyHeader": false
   },
   "TabBar": [
     {
@@ -378,25 +378,25 @@
       "pos": 100,
       "defaultTab": false,
       "icon": "assets/icons/tabs/icon-home.png",
-      "key": "rwsvearua2"
+      "key": "o7p81cglqu"
     },
     {
-      "key": "rwsvearua2",
       "layout": "category",
-      "icon": "square_grid_2x2",
+      "parallaxImageRatio": 1.2,
       "fontFamily": "CupertinoIcons",
-      "pos": 200,
-      "defaultTab": false,
       "fullscreen": false,
-      "categoryLayout": "sideMenu",
+      "pos": 200,
       "parallax": false,
-      "parallaxImageRatio": 1.2
+      "defaultTab": false,
+      "icon": "square_grid_2x2",
+      "categoryLayout": "sideMenu",
+      "key": "o7p81cglqu"
     },
     {
       "layout": "search",
       "pos": 300,
       "icon": "assets/icons/tabs/icon-search.png",
-      "key": "rwsvearua2"
+      "key": "o7p81cglqu"
     },
     {
       "layout": "profile",
@@ -462,7 +462,7 @@
           "enableForward": false
         }
       },
-      "key": "rwsvearua2"
+      "key": "o7p81cglqu"
     },
     {
       "layout": "cart",
@@ -470,7 +470,7 @@
       "pos": 500,
       "defaultTab": false,
       "icon": "shopping_cart",
-      "key": "rwsvearua2"
+      "key": "o7p81cglqu"
     }
   ],
   "Drawer": {
@@ -627,6 +627,6 @@
     "name": "Por Categoría",
     "cartIconRadius": 12,
     "shuffle": false,
-    "key": "rwsvearua2"
+    "key": "o7p81cglqu"
   }
 }

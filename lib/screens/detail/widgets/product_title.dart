@@ -43,9 +43,14 @@ class _ProductTitleState extends BaseScreen<ProductTitle> {
   getProductPrice() {
     try {
 
+      var salesPrice = productVariation != null? productVariation!.salePrice : widget.product!.salePrice;
+      var normalPrice = productVariation != null &&
+          (productVariation?.price?.isNotEmpty ?? false)? productVariation!.price :  isNotBlank(widget.product!.price)? widget.product!.price : widget.product!.regularPrice;
+      var regularrPrice = productVariation != null? productVariation!.regularPrice : widget.product!.regularPrice;
+
       var userRoles = UserBox().userRole;
-      String? discountPrice;
       var metaData=widget.product?.metaData;
+
       if(metaData!=null && userRoles!=null){
         for(var data in metaData){
           if(data['key']=='festiUserRolePrices'){
@@ -54,11 +59,29 @@ class _ProductTitleState extends BaseScreen<ProductTitle> {
             Map discountMapValue = jsonDecode(data['value']);
             for(var role in userRoles){
               if(role == 'vendedor'){
-                discountPrice = discountMapValue['vendedor'];
-                // print('this is vendedor discount price ====================== ${discountPrice}');
+                var regularDiscountPrice = discountMapValue['vendedor'];
+                var salesDiscountPrice;
+                if(discountMapValue['salePrice'] !=null){
+                  salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+                  salesPrice=salesDiscountPrice;
+                }
+                normalPrice=regularDiscountPrice;
+                regularrPrice=regularDiscountPrice;
+                //  print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+                // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
+                // print('detail ======== this is vendedor regular price ====================== ${regularrPrice}');
               }else if(role == 'minimarket'){
-                discountPrice = discountMapValue['minimarket'];
-                // print('this is minimarket discount price ====================== ${discountPrice}');
+                var regularDiscountPrice = discountMapValue['minimarket'];
+                var salesDiscountPrice;
+                if(discountMapValue['salePrice'] !=null){
+                  salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+                  salesPrice=salesDiscountPrice;
+                }
+                normalPrice=regularDiscountPrice;
+                regularrPrice=regularDiscountPrice;
+                //  print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+                // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
+                // print('detail ========  this is minimarket regular price ====================== ${regularrPrice}');
               }
             }
           }
@@ -66,26 +89,16 @@ class _ProductTitleState extends BaseScreen<ProductTitle> {
       }
 
 
-      regularPrice = discountPrice?? (productVariation != null
-          ? productVariation!.regularPrice
-          : widget.product!.regularPrice);
+      regularPrice = regularrPrice;
       onSale = productVariation != null
           ? productVariation!.onSale ?? false
-          : widget.product!.onSale ?? false;
-      price = discountPrice??(productVariation != null &&
-          (productVariation?.price?.isNotEmpty ?? false)
-          ? productVariation!.price
-          : isNotBlank(widget.product!.price)
-          ? widget.product!.price
-          : widget.product!.regularPrice);
+          : PriceTools.getPriceProductValue(widget.product, onSale: true) !=
+          PriceTools.getPriceProductValue(widget.product, onSale: false)? widget.product!.onSale ?? false:false;
+      price = normalPrice ?? regularrPrice;
 
       /// update the Sale price
       if (onSale) {
-        price = discountPrice??(productVariation != null
-            ? productVariation!.salePrice
-            : isNotBlank(widget.product!.salePrice)
-            ? widget.product!.salePrice
-            : widget.product!.price);
+        price = salesPrice ?? normalPrice;
         dateOnSaleTo = productVariation != null
             ? productVariation!.dateOnSaleTo
             : widget.product!.dateOnSaleTo;

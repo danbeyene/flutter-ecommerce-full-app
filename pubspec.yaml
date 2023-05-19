@@ -7,9 +7,9 @@ description: Mobile commerce app by Flutter
 # In Android, build-name is used as versionName while build-number used as versionCode.Read more about Android versioning at https://developer.android.com/studio/publish/versioning
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion. Read more about iOS versioning at https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 #android
-version: 3.0.1+20304
+version: 3.0.3+20306
 #ios
-#version: 3.0.1+8
+#version: 3.0.2+10
 
 environment:
   sdk: ">=2.17.6 <3.0.0"

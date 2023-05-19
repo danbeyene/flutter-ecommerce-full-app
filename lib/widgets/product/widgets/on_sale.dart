@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:quiver/strings.dart';
 
 import '../../../common/tools.dart';
+import '../../../data/boxes.dart';
 import '../../../generated/l10n.dart';
 import '../../../models/index.dart' show Product;
 import '../../../modules/dynamic_layout/config/product_config.dart';
@@ -23,25 +27,67 @@ class ProductOnSale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double? regularPrice = 0.0;
-    var salePercent = 0;
-
-    if (product.regularPrice != null &&
-        product.regularPrice!.isNotEmpty &&
-        product.regularPrice != '0.0') {
-      regularPrice = (double.tryParse(product.regularPrice.toString()));
-    }
-
-    /// Calculate the Sale price
     var isSale = (product.onSale ?? false) &&
         PriceTools.getPriceProductValue(product, onSale: true) !=
             PriceTools.getPriceProductValue(product, onSale: false);
+    double? regularPrice = 0.0;
+    var salePercent = 0;
+
+    var salesPrice = isSale? product.salePrice: null;
+    var normalPrice = isNotBlank(product.price)? product.price : product.regularPrice;
+    var regularrPrice = product.regularPrice != null &&
+        product.regularPrice!.isNotEmpty &&
+        product.regularPrice != '0.0'? product.regularPrice : null;
+
+    var userRoles = UserBox().userRole;
+    var metaData=product.metaData;
+
+    if(userRoles!=null){
+      for(var data in metaData){
+        if(data['key']=='festiUserRolePrices'){
+          // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+          // print('this is user roles ====================== ${userRoles}');
+          Map discountMapValue = jsonDecode(data['value']);
+          for(var role in userRoles){
+            if(role == 'vendedor'){
+              var regularDiscountPrice = discountMapValue['vendedor'];
+              var salesDiscountPrice;
+              if(discountMapValue['salePrice'] !=null){
+                salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+                salesPrice=salesDiscountPrice;
+              }
+              normalPrice=regularDiscountPrice;
+              regularrPrice=regularDiscountPrice;
+              // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+              // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
+              // print('detail ======== this is vendedor regular price ====================== ${regularrPrice}');
+            }else if(role == 'minimarket'){
+              var regularDiscountPrice = discountMapValue['minimarket'];
+              var salesDiscountPrice;
+              if(discountMapValue['salePrice'] !=null){
+                salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+                salesPrice=salesDiscountPrice;
+              }
+              normalPrice=regularDiscountPrice;
+              regularrPrice=regularDiscountPrice;
+              // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+              // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
+              // print('detail ========  this is minimarket regular price ====================== ${regularrPrice}');
+            }
+          }
+        }
+      }
+    }
+
+    regularPrice =(double.tryParse(regularrPrice.toString()));
+
+    /// Calculate the Sale price
     if (isSale && regularPrice != 0) {
-      salePercent = (double.parse(product.salePrice!) - regularPrice!) * 100 ~/ regularPrice;
+      salePercent = (double.parse(salesPrice!) - regularPrice!) * 100 ~/ regularPrice;
     }
 
     if (isSale &&
-        (product.regularPrice?.isNotEmpty ?? false) &&
+        (regularrPrice?.isNotEmpty ?? false) &&
         regularPrice != null &&
         regularPrice != 0.0 &&
         product.type != 'variable') {

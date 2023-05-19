@@ -78,12 +78,12 @@ class CartModelWoo
         if ((signUpFee?.isNotEmpty ?? false) &&
             productsInCart[id] != null &&
             double.parse(signUpFee!) > 0) {
-          return double.parse(signUpFee!) * productsInCart[id]! - taxesTotal;
+          return double.parse(signUpFee!) * productsInCart[id]!;
         }
       }
     }
 
-    return super.getProductPrice(id) - taxesTotal;
+    return super.getProductPrice(id);
   }
 
   @override

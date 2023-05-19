@@ -367,6 +367,35 @@ class _ShoppingCartSummaryState extends State<ShoppingCartSummary> {
                                     ),
                             ],
                           ),
+                          // const SizedBox(height: 10,),
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //       child: Text(
+                          //         '${S.of(context).total}:',
+                          //         style: largeAmountStyle,
+                          //       ),
+                          //     ),
+                          //     cartModel.calculatingDiscount
+                          //         ? const SizedBox(
+                          //       width: 20,
+                          //       height: 20,
+                          //       child: CircularProgressIndicator(
+                          //         strokeWidth: 2.0,
+                          //       ),
+                          //     )
+                          //         : Text(
+                          //       PriceTools.getCurrencyFormatted(
+                          //           cartModel.getTotal()! -
+                          //               cartModel.getShippingCost()!,
+                          //           currencyRate,
+                          //           currency: cartModel.isWalletCart()
+                          //               ? defaultCurrency?.currencyCode
+                          //               : currency)!,
+                          //       style: largeAmountStyle,
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
