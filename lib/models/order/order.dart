@@ -624,8 +624,8 @@ class Order {
       var item = {
         'product_id': productId,
         'quantity': cartModel.productsInCart[key],
-        'subtotal': '$itemPrice',
-        'total': '$itemPrice'
+        // 'subtotal': '$itemPrice',
+        // 'total': '$itemPrice'
       };
 
       var attrNames = <String?>[];
@@ -708,15 +708,15 @@ class Order {
         addons['add-to-cart'] = productId;
         item['addons'] = addons;
 
-        item['subtotal'] = '$itemPrice';
-        item['total'] = '$itemPrice';
+        // item['subtotal'] = '$itemPrice';
+        // item['total'] = '$itemPrice';
       }
 
-      if (isWalletCart) {
-        var itemPrice = cartModel.getProductPrice(key);
-        item['subtotal'] = '$itemPrice';
-        item['total'] = '$itemPrice';
-      }
+      // if (isWalletCart) {
+      //   // var itemPrice = cartModel.getProductPrice(key);
+      //   // item['subtotal'] = '$itemPrice';
+      //   // item['total'] = '$itemPrice';
+      // }
       return item;
     }).toList();
 

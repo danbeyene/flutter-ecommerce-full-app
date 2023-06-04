@@ -1,8 +1,11 @@
+import 'package:country_pickers/country_pickers.dart' as picker;
 import 'package:flutter/cupertino.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 import '../../common/constants.dart';
 import '../../common/tools/image_tools.dart';
+import '../../models/entities/country.dart';
+import '../../models/entities/country_state.dart';
 import '../../models/entities/user.dart';
 import '../../services/index.dart';
 
@@ -27,11 +30,13 @@ class UserUpdateModel extends ChangeNotifier {
   TextEditingController shippingPostcode = TextEditingController();
   TextEditingController shippingCountry = TextEditingController();
   TextEditingController shippingState = TextEditingController();
+  List<CountryState>? states = [];
 
   dynamic avatar;
   final User? _user;
   UserUpdateModel(this._user) {
     _initAllController();
+    loadStates();
   }
 
   void _initAllController() {
@@ -49,6 +54,18 @@ class UserUpdateModel extends ChangeNotifier {
     shippingState.text = _user!.shipping?.state ?? '';
     shippingCountry.text = _user!.shipping?.country ?? '';
     shippingCompany.text = _user!.shipping?.company ?? '';
+  }
+
+  void loadStates() async {
+    if (shippingCountry.text.isNotEmpty) {
+      final c = Country(
+          id: shippingCountry.text,
+          name: picker.CountryPickerUtils.getCountryByIsoCode(
+                  shippingCountry.text)
+              .name);
+      states = await Services().widget.loadStates(c);
+      notifyListeners();
+    }
   }
 
   void _updateState(state) {

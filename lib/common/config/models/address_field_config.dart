@@ -61,7 +61,8 @@ enum AddressFieldType {
 
 class AddressFieldConfig {
   final AddressFieldType type;
-  final bool visible;
+  // final bool visible;
+   bool visible;
   final int position;
   final bool editable;
   final bool required;

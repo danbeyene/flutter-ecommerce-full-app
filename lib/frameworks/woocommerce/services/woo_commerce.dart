@@ -1702,7 +1702,10 @@ class WooCommerceService extends BaseServices {
       final response = await httpPost(
           '$domain/wp-json/api/flutter_woo/cart'.toUri()!,
           body: convert.jsonEncode(params),
-          headers: {'Content-Type': 'application/json'});
+          headers: {
+              'Content-Type': 'application/json',
+              'User-Cookie':'${user!.cookie}'
+                  });
       final body = convert.jsonDecode(response.body);
       checkExpiredCookie(response);
       if (response.statusCode == 200) {

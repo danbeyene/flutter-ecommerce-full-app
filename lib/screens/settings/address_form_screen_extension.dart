@@ -1,6 +1,6 @@
-part of 'shipping_address.dart';
+part of 'address_form_screen.dart';
 
-extension on _ShippingAddressState {
+extension on _AddressFormScreenState {
   void updateAddress(Address? newAddress) {
     address = newAddress;
     loadUserInfoFromAddress(newAddress);
@@ -36,7 +36,7 @@ extension on _ShippingAddressState {
     }
     for (var local in listAddress) {
       final isNotExistedInLocal = local.city !=
-              _textControllers[AddressFieldType.city]?.text ||
+          _textControllers[AddressFieldType.city]?.text ||
           local.street != _textControllers[AddressFieldType.street]?.text ||
           local.zipCode != _textControllers[AddressFieldType.zipCode]?.text ||
           local.state != _textControllers[AddressFieldType.state]?.text;
@@ -71,16 +71,22 @@ extension on _ShippingAddressState {
   void saveDataToLocal() {
     var listAddress = <Address>[];
     final address = this.address;
-    if (address != null) {
+    // print('current list address ================================== ${address}');
+    if (address != null && widget.isFromEdit==false) {
       listAddress.add(address);
     }
     var listData = SettingsBox().addresses;
+    // print('saved to local list address ================================== ${listData}');
     if (listData != null) {
-      for (var item in listData) {
+      for (var index=0;index<listData.length;index++) {
+        if(widget.isFromEdit==true && index==widget.editAddressIndex && address!=null){
+          listData[index]=address;
+        }
+        var item = listData[index];
         listAddress.add(item);
       }
     }
-    print('list address ================================== ${listAddress}');
+    // print('total list address ================================== ${listAddress}');
     SettingsBox().addresses = listAddress;
     FlashHelper.message(
       context,
@@ -95,28 +101,28 @@ extension on _ShippingAddressState {
     return 'The E-mail Address must be a valid email address.';
   }
 
-  /// Load Shipping beforehand
-  void _loadShipping({bool beforehand = true}) {
-    Services().widget.loadShippingMethods(
-        context, Provider.of<CartModel>(context, listen: false), beforehand);
-  }
+  // /// Load Shipping beforehand
+  // void _loadShipping({bool beforehand = true}) {
+  //   Services().widget.loadShippingMethods(
+  //       context, Provider.of<CartModel>(context, listen: false), beforehand);
+  // }
 
-  /// on tap to Next Button
-  void _onNext() {
-    {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save();
-        Provider.of<CartModel>(context, listen: false).setAddress(address);
-        _loadShipping(beforehand: false);
-        widget.onNext!();
-      } else {
-        FlashHelper.errorMessage(
-          context,
-          message: S.of(context).pleaseInput,
-        );
-      }
-    }
-  }
+  // /// on tap to Next Button
+  // void _onNext() {
+  //   {
+  //     if (_formKey.currentState!.validate()) {
+  //       _formKey.currentState!.save();
+  //       Provider.of<CartModel>(context, listen: false).setAddress(address);
+  //       _loadShipping(beforehand: false);
+  //       widget.onNext!();
+  //     } else {
+  //       FlashHelper.errorMessage(
+  //         context,
+  //         message: S.of(context).pleaseInput,
+  //       );
+  //     }
+  //   }
+  // }
 
   Widget renderStateInput() {
     var items = <DropdownMenuItem>[];
@@ -189,7 +195,7 @@ extension on _ShippingAddressState {
         final state = CountryState(id: address!.state);
         final city = City(id: val, name: val);
         final zipCode =
-            await Services().widget.loadZipCode(country, state, city);
+        await Services().widget.loadZipCode(country, state, city);
         if (zipCode != null) {
           address!.zipCode = zipCode;
           _textControllers[AddressFieldType.zipCode]?.text = zipCode;
@@ -203,102 +209,104 @@ extension on _ShippingAddressState {
   }
 
   void _openCountryPickerDialog() => showDialog(
-        context: context,
-        useRootNavigator: false,
-        builder: (contextBuilder) => countries!.isEmpty
-            ? Theme(
-                data: Theme.of(context).copyWith(primaryColor: Colors.pink),
-                child: SizedBox(
-                  height: 500,
-                  child: picker.CountryPickerDialog(
-                    titlePadding: const EdgeInsets.all(8.0),
-                    contentPadding: const EdgeInsets.all(2.0),
-                    searchCursorColor: Colors.pinkAccent,
-                    searchInputDecoration:
-                        const InputDecoration(hintText: 'Search...'),
-                    isSearchable: true,
-                    title: Text(S.of(context).country),
-                    onValuePicked: (picker_country.Country country) async {
-                      _textControllers[AddressFieldType.country]?.text =
-                          country.isoCode;
-                      address!.country = country.isoCode;
-                      refresh();
-                      final c =
-                          Country(id: country.isoCode, name: country.name);
-                      states = await Services().widget.loadStates(c);
-                      address!.zipCode = '';
-                      _textControllers[AddressFieldType.zipCode]?.text = '';
-                      refresh();
-                    },
-                    itemBuilder: (country) {
-                      return Row(
-                        children: <Widget>[
-                          picker.CountryPickerUtils.getDefaultFlagImage(
-                              country),
-                          const SizedBox(width: 8.0),
-                          Expanded(child: Text(country.name)),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              )
-            : Dialog(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: List.generate(
-                      countries!.length,
-                      (index) {
-                        return GestureDetector(
-                          onTap: () async {
-                            _textControllers[AddressFieldType.country]?.text =
-                                countries![index].code!;
-                            address!.country = countries![index].id;
-                            address!.countryId = countries![index].id;
-                            refresh();
-                            Navigator.pop(contextBuilder);
-                            states = await Services()
-                                .widget
-                                .loadStates(countries![index]);
-                            address!.zipCode = '';
-                            _textControllers[AddressFieldType.zipCode]?.text =
-                                '';
-                            refresh();
-                          },
-                          child: ListTile(
-                            leading: countries![index].icon != null
-                                ? SizedBox(
-                                    height: 40,
-                                    width: 60,
-                                    child: FluxImage(
-                                      imageUrl: countries![index].icon!,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )
-                                : (countries![index].code != null
-                                    ? Image.asset(
-                                        picker.CountryPickerUtils
-                                            .getFlagImageAssetPath(
-                                                countries![index].code!),
-                                        height: 40,
-                                        width: 60,
-                                        fit: BoxFit.fill,
-                                        package: 'country_pickers',
-                                      )
-                                    : const SizedBox(
-                                        height: 40,
-                                        width: 60,
-                                        child: Icon(Icons.streetview),
-                                      )),
-                            title: Text(countries![index].name!),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-      );
+    context: context,
+    useRootNavigator: false,
+    builder: (contextBuilder) =>
+    // countries!.isEmpty
+    //     ?
+    Theme(
+      data: Theme.of(context).copyWith(primaryColor: Colors.pink),
+      child: SizedBox(
+        height: 500,
+        child: picker.CountryPickerDialog(
+          titlePadding: const EdgeInsets.all(8.0),
+          contentPadding: const EdgeInsets.all(2.0),
+          searchCursorColor: Colors.pinkAccent,
+          searchInputDecoration:
+          const InputDecoration(hintText: 'Buscar...'),
+          isSearchable: true,
+          title: Text(S.of(context).country),
+          onValuePicked: (picker_country.Country country) async {
+            _textControllers[AddressFieldType.country]?.text =
+                country.isoCode;
+            address!.country = country.isoCode;
+            refresh();
+            final c =
+            Country(id: country.isoCode, name: country.name);
+            states = await Services().widget.loadStates(c);
+            address!.zipCode = '';
+            _textControllers[AddressFieldType.zipCode]?.text = '';
+            refresh();
+          },
+          itemBuilder: (country) {
+            return Row(
+              children: <Widget>[
+                picker.CountryPickerUtils.getDefaultFlagImage(
+                    country),
+                const SizedBox(width: 8.0),
+                Expanded(child: Text(country.name)),
+              ],
+            );
+          },
+        ),
+      ),
+    )
+    //     : Dialog(
+    //   child: SingleChildScrollView(
+    //     child: Column(
+    //       children: List.generate(
+    //         countries!.length,
+    //             (index) {
+    //           return GestureDetector(
+    //             onTap: () async {
+    //               _textControllers[AddressFieldType.country]?.text =
+    //               countries![index].code!;
+    //               address!.country = countries![index].id;
+    //               address!.countryId = countries![index].id;
+    //               refresh();
+    //               Navigator.pop(contextBuilder);
+    //               states = await Services()
+    //                   .widget
+    //                   .loadStates(countries![index]);
+    //               address!.zipCode = '';
+    //               _textControllers[AddressFieldType.zipCode]?.text =
+    //               '';
+    //               refresh();
+    //             },
+    //             child: ListTile(
+    //               leading: countries![index].icon != null
+    //                   ? SizedBox(
+    //                 height: 40,
+    //                 width: 60,
+    //                 child: FluxImage(
+    //                   imageUrl: countries![index].icon!,
+    //                   fit: BoxFit.cover,
+    //                 ),
+    //               )
+    //                   : (countries![index].code != null
+    //                   ? Image.asset(
+    //                 picker.CountryPickerUtils
+    //                     .getFlagImageAssetPath(
+    //                     countries![index].code!),
+    //                 height: 40,
+    //                 width: 60,
+    //                 fit: BoxFit.fill,
+    //                 package: 'country_pickers',
+    //               )
+    //                   : const SizedBox(
+    //                 height: 40,
+    //                 width: 60,
+    //                 child: Icon(Icons.streetview),
+    //               )),
+    //               title: Text(countries![index].name!),
+    //             ),
+    //           );
+    //         },
+    //       ),
+    //     ),
+    //   ),
+    // ),
+  );
 
   void onTextFieldSaved(String? value, AddressFieldType type) {
     switch (type) {
@@ -336,7 +344,7 @@ extension on _ShippingAddressState {
         address?.zipCode = value?.trim();
         break;
 
-      /// Unsupported.
+    /// Unsupported.
       case AddressFieldType.searchAddress:
       case AddressFieldType.selectAddress:
       case AddressFieldType.unknown:
@@ -406,11 +414,19 @@ extension on _ShippingAddressState {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 165,
+            width: 220,
             child: OutlinedButton.icon(
-              style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
+              // style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    elevation: 0.0,
+                    padding: EdgeInsets.zero,
+                  ),
               onPressed: () {
-                if (!checkToSave()) return;
+                if(widget.isFromEdit==false){
+                  if (!checkToSave()) return;
+                }
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
                   Provider.of<CartModel>(context, listen: false)
@@ -423,52 +439,57 @@ extension on _ShippingAddressState {
                   );
                 }
               },
-              icon: const Padding(
-                padding: EdgeInsets.only(left: 5),
+              icon:  Padding(
+                padding: const EdgeInsets.only(left: 5),
                 child: Icon(
-                  CupertinoIcons.plus_app,
-                  size: 20,
+                  widget.isFromEdit==false?CupertinoIcons.plus_app:Icons.edit_location_alt,
+                  size: 25,
                 ),
               ),
               label: Text(
-                S.of(context).saveAddress.toTitleCase(),
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
+                widget.isFromEdit==false?'Añadir Dirección':'Guardar Dirección',
+                // S.of(context).saveAddress.toTitleCase(),
+                // style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                //   color: Theme.of(context).colorScheme.secondary,
+                // ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(color: Colors.white),
               ),
             ),
           ),
-          Container(width: 8),
-          Expanded(
-            child: ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Theme.of(context).primaryColor,
-                elevation: 0.0,
-                padding: EdgeInsets.zero,
-              ),
-              icon: const Padding(
-                padding: EdgeInsets.only(left: 5),
-                child: Icon(
-                  Icons.local_shipping_outlined,
-                  size: 18,
-                ),
-              ),
-              onPressed: _onNext,
-              label: Text(
-                (kPaymentConfig.enableShipping
-                        ? S.of(context).continueToShipping
-                        : kPaymentConfig.enableReview
-                            ? S.of(context).continueToReview
-                            : S.of(context).continueToPayment)
-                    .toTitleCase(),
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(color: Colors.white),
-              ),
-            ),
-          ),
+          // Container(width: 8),
+          // Expanded(
+          //   child: ElevatedButton.icon(
+          //     style: ElevatedButton.styleFrom(
+          //       foregroundColor: Colors.white,
+          //       backgroundColor: Theme.of(context).primaryColor,
+          //       elevation: 0.0,
+          //       padding: EdgeInsets.zero,
+          //     ),
+          //     icon: const Padding(
+          //       padding: EdgeInsets.only(left: 5),
+          //       child: Icon(
+          //         Icons.local_shipping_outlined,
+          //         size: 18,
+          //       ),
+          //     ),
+          //     onPressed: _onNext,
+          //     label: Text(
+          //       (kPaymentConfig.enableShipping
+          //           ? S.of(context).continueToShipping
+          //           : kPaymentConfig.enableReview
+          //           ? S.of(context).continueToReview
+          //           : S.of(context).continueToPayment)
+          //           .toTitleCase(),
+          //       style: Theme.of(context)
+          //           .textTheme
+          //           .bodyLarge!
+          //           .copyWith(color: Colors.white),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

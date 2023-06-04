@@ -28,6 +28,8 @@ import '../common/app_bar_mixin.dart';
 import '../common/delete_account_mixin.dart';
 import '../index.dart';
 import '../users/user_point_screen.dart';
+import 'address_form_screen.dart';
+import 'manage_address_screen.dart';
 import 'rate_myapp_mixin.dart';
 
 const itemPadding = 15.0;
@@ -250,6 +252,41 @@ class SettingScreenState extends State<SettingScreen>
           size: 18,
         ),
       ),
+    );
+  }
+
+  Widget renderAddressManagement(){
+    IconData icon;
+    String title;
+    Widget? trailing;
+    Function() onTap;
+
+    trailing = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: const [
+        SizedBox(),
+        SizedBox(width: 5),
+        Icon(Icons.arrow_forward_ios, size: 18, color: kGrey600)
+      ],
+    );
+
+    title = 'Administra tus direcciones';
+    icon = CupertinoIcons.location;
+    onTap = () {
+      Navigator.of(context, rootNavigator: true).push(
+        MaterialPageRoute(
+          builder: (context) =>
+               const ManageAddressScreen(),
+        ),
+      );
+
+    };
+
+    return _SettingItem(
+      icon: icon,
+      title: title,
+      trailing: trailing,
+      onTap: onTap,
     );
   }
 
@@ -971,6 +1008,15 @@ class SettingScreenState extends State<SettingScreen>
                     ],
                   ),
                 ),
+
+                /// add address management
+                if(user!=null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: itemPadding,
+                    ),
+                    child: renderAddressManagement(),
+                  ),
 
                 /// render list of dynamic menu
                 /// this could be manage from the Fluxbuilder

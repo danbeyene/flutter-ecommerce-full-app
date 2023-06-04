@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:collection/collection.dart';
+import 'package:country_pickers/country.dart' as picker_country;
+import 'package:country_pickers/country_pickers.dart' as picker;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +12,8 @@ import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import '../../common/tools.dart';
 import '../../common/tools/flash.dart';
 import '../../generated/l10n.dart';
+import '../../models/entities/country.dart';
+import '../../models/entities/country_state.dart';
 import '../../models/entities/user.dart';
 import '../../models/user_model.dart';
 import '../../services/index.dart';
@@ -22,6 +27,39 @@ class UserUpdateWooScreen extends StatefulWidget {
 
 class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
   String? avatar;
+  // List<CountryState>? states = [];
+
+  Widget renderStateInput(UserUpdateModel model) {
+    var states = model.states;
+    var items = <DropdownMenuItem>[];
+    for (var item in states!) {
+      items.add(
+        DropdownMenuItem(
+          value: item.id,
+          child: Text(item.name ?? ''),
+        ),
+      );
+    }
+    String? value;
+
+    Object? firstState = states.firstWhereOrNull(
+        (o) => o.id.toString() == model.shippingState.text.toString());
+
+    if (firstState != null) {
+      value = model.shippingState.text;
+    }
+    return DropdownButton(
+      items: items,
+      value: value,
+      onChanged: (dynamic val) async {
+        model.shippingState.text = val;
+        refresh();
+      },
+      isExpanded: true,
+      itemHeight: 70,
+      hint: Text(S.of(context).stateProvince),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +193,8 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                 borderRadius: BorderRadius.circular(150),
                                 color: Theme.of(context).primaryColorLight,
                                 border: Border.all(
-                                  color: Theme.of(context).colorScheme.background,
+                                  color:
+                                      Theme.of(context).colorScheme.background,
                                   width: 3,
                                 ),
                               ),
@@ -199,7 +238,8 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                 color:
                                     Theme.of(context).colorScheme.onBackground,
                                 border: Border.all(
-                                  color: Theme.of(context).colorScheme.background,
+                                  color:
+                                      Theme.of(context).colorScheme.background,
                                   width: 2,
                                 ),
                               ),
@@ -210,7 +250,8 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                 onPressed: () => model.selectImage(context),
                                 icon: Icon(
                                   Icons.camera_alt,
-                                  color: Theme.of(context).colorScheme.background,
+                                  color:
+                                      Theme.of(context).colorScheme.background,
                                 ),
                               ),
                             ),
@@ -360,16 +401,113 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                       borderRadius: BorderRadius.circular(5),
                                       border: Border.all(
                                         color:
-                                        Theme.of(context).primaryColorLight,
+                                            Theme.of(context).primaryColorLight,
                                         width: 1.5,
                                       ),
                                     ),
                                     child: Consumer<UserUpdateModel>(
-                                      builder: (_, model, __) => TextField(
-                                        decoration: const InputDecoration(
-                                            border: InputBorder.none),
-                                        controller: model.shippingCountry,
+                                      builder: (_, model, __) =>
+                                          GestureDetector(
+                                        onTap: () {
+                                          showDialog(
+                                              context: context,
+                                              useRootNavigator: false,
+                                              builder: (contextBuilder) =>
+                                                  Theme(
+                                                    data: Theme.of(context)
+                                                        .copyWith(
+                                                            primaryColor:
+                                                                Colors.pink),
+                                                    child: SizedBox(
+                                                      height: 500,
+                                                      child: picker
+                                                          .CountryPickerDialog(
+                                                        titlePadding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        searchCursorColor:
+                                                            Colors.pinkAccent,
+                                                        searchInputDecoration:
+                                                            const InputDecoration(
+                                                                hintText:
+                                                                    'Buscar...'),
+                                                        isSearchable: true,
+                                                        title: Text(S
+                                                            .of(context)
+                                                            .country),
+                                                        onValuePicked:
+                                                            (picker_country
+                                                                    .Country
+                                                                country) async {
+                                                          model.shippingCountry
+                                                                  .text =
+                                                              country.isoCode;
+                                                          refresh();
+                                                          model.loadStates();
+                                                          refresh();
+                                                        },
+                                                        itemBuilder: (country) {
+                                                          return Row(
+                                                            children: <Widget>[
+                                                              picker.CountryPickerUtils
+                                                                  .getDefaultFlagImage(
+                                                                      country),
+                                                              const SizedBox(
+                                                                  width: 8.0),
+                                                              Expanded(
+                                                                  child: Text(
+                                                                      country
+                                                                          .name)),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ));
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 20),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    child: Text(
+                                                        model.shippingCountry
+                                                                .text.isNotEmpty
+                                                            ? picker.CountryPickerUtils
+                                                                    .getCountryByIsoCode(model
+                                                                        .shippingCountry
+                                                                        .text)
+                                                                .name
+                                                            : '',
+                                                        style: const TextStyle(
+                                                            fontSize: 17.0)),
+                                                  ),
+                                                  const Icon(
+                                                      Icons.arrow_drop_down)
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
+
+                                      //     TextField(
+                                      //   decoration: const InputDecoration(
+                                      //       border: InputBorder.none),
+                                      //   controller: model.shippingCountry,
+                                      // ),
                                     ),
                                   ),
                                   const SizedBox(height: 16),
@@ -389,16 +527,19 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                       borderRadius: BorderRadius.circular(5),
                                       border: Border.all(
                                         color:
-                                        Theme.of(context).primaryColorLight,
+                                            Theme.of(context).primaryColorLight,
                                         width: 1.5,
                                       ),
                                     ),
                                     child: Consumer<UserUpdateModel>(
-                                      builder: (_, model, __) => TextField(
-                                        decoration: const InputDecoration(
-                                            border: InputBorder.none),
-                                        controller: model.shippingState,
-                                      ),
+                                      builder: (_, model, __) => model
+                                              .states!.isNotEmpty
+                                          ? renderStateInput(model)
+                                          : TextField(
+                                              decoration: const InputDecoration(
+                                                  border: InputBorder.none),
+                                              controller: model.shippingState,
+                                            ),
                                     ),
                                   ),
                                   const SizedBox(height: 16),
@@ -418,7 +559,7 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                       borderRadius: BorderRadius.circular(5),
                                       border: Border.all(
                                         color:
-                                        Theme.of(context).primaryColorLight,
+                                            Theme.of(context).primaryColorLight,
                                         width: 1.5,
                                       ),
                                     ),
@@ -488,7 +629,6 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                                   //     ),
                                   //   ),
                                   // ),
-
 
                                   // const SizedBox(height: 16),
                                   // Text(S.of(context).zipCode,
@@ -580,5 +720,11 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
         ),
       ),
     );
+  }
+
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

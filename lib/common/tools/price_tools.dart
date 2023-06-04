@@ -23,38 +23,38 @@ class PriceTools {
 
     var userRoles = UserBox().userRole;
     var metaData=product.metaData;
-    if(userRoles!=null){
-      for(var data in metaData){
-        if(data['key']=='festiUserRolePrices'){
-          // print('this is discount value ====================== ${jsonDecode(data['value'])}');
-          // print('this is user roles ====================== ${userRoles}');
-          Map discountMapValue = jsonDecode(data['value']);
-          for(var role in userRoles){
-            if(role == 'vendedor'){
-              var regularDiscountPrice = discountMapValue['vendedor'];
-              var salesDiscountPrice;
-              if(discountMapValue['salePrice'] !=null){
-                salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
-                salesPrice=salesDiscountPrice;
-              }
-              normalPrice=regularDiscountPrice;
-              // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
-              // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
-            }else if(role == 'minimarket'){
-              var regularDiscountPrice = discountMapValue['minimarket'];
-              var salesDiscountPrice;
-              if(discountMapValue['salePrice'] !=null){
-                salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
-                salesPrice=salesDiscountPrice;
-              }
-              normalPrice=regularDiscountPrice;
-              // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
-              // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
-            }
-          }
-        }
-      }
-    }
+    // if(userRoles!=null){
+    //   for(var data in metaData){
+    //     if(data['key']=='festiUserRolePrices'){
+    //       // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+    //       // print('this is user roles ====================== ${userRoles}');
+    //       Map discountMapValue = jsonDecode(data['value']);
+    //       for(var role in userRoles){
+    //         if(role == 'vendedor'){
+    //           var regularDiscountPrice = discountMapValue['vendedor'];
+    //           var salesDiscountPrice;
+    //           if(discountMapValue['salePrice'] !=null){
+    //             salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+    //             salesPrice=salesDiscountPrice;
+    //           }
+    //           normalPrice=regularDiscountPrice;
+    //           // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+    //           // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
+    //         }else if(role == 'minimarket'){
+    //           var regularDiscountPrice = discountMapValue['minimarket'];
+    //           var salesDiscountPrice;
+    //           if(discountMapValue['salePrice'] !=null){
+    //             salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+    //             salesPrice=salesDiscountPrice;
+    //           }
+    //           normalPrice=regularDiscountPrice;
+    //           // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+    //           // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
     var price = double.tryParse(onSale == true
         ? (isNotBlank(salesPrice)
@@ -81,38 +81,38 @@ class PriceTools {
 
     var userRoles = UserBox().userRole;
     var metaData=product?.metaData;
-    if(metaData!=null && userRoles!=null){
-      for(var data in metaData){
-        if(data['key']=='festiUserRolePrices'){
-          // print('this is discount value ====================== ${jsonDecode(data['value'])}');
-          // print('this is user roles ====================== ${userRoles}');
-          Map discountMapValue = jsonDecode(data['value']);
-          for(var role in userRoles){
-            if(role == 'vendedor'){
-              var regularDiscountPrice = discountMapValue['vendedor'];
-              var salesDiscountPrice;
-              if(discountMapValue['salePrice'] !=null){
-                salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
-                salesPrice=salesDiscountPrice;
-              }
-              normalPrice=regularDiscountPrice;
-              // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
-              // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
-            }else if(role == 'minimarket'){
-              var regularDiscountPrice = discountMapValue['minimarket'];
-              var salesDiscountPrice;
-              if(discountMapValue['salePrice'] !=null){
-                salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
-                salesPrice=salesDiscountPrice;
-              }
-              normalPrice=regularDiscountPrice;
-              // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
-              // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
-            }
-          }
-        }
-      }
-    }
+    // if(metaData!=null && userRoles!=null){
+    //   for(var data in metaData){
+    //     if(data['key']=='festiUserRolePrices'){
+    //       // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+    //       // print('this is user roles ====================== ${userRoles}');
+    //       Map discountMapValue = jsonDecode(data['value']);
+    //       for(var role in userRoles){
+    //         if(role == 'vendedor'){
+    //           var regularDiscountPrice = discountMapValue['vendedor'];
+    //           var salesDiscountPrice;
+    //           if(discountMapValue['salePrice'] !=null){
+    //             salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+    //             salesPrice=salesDiscountPrice;
+    //           }
+    //           normalPrice=regularDiscountPrice;
+    //           // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+    //           // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
+    //         }else if(role == 'minimarket'){
+    //           var regularDiscountPrice = discountMapValue['minimarket'];
+    //           var salesDiscountPrice;
+    //           if(discountMapValue['salePrice'] !=null){
+    //             salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+    //             salesPrice=salesDiscountPrice;
+    //           }
+    //           normalPrice=regularDiscountPrice;
+    //           // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+    //           // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
     var price = double.tryParse(
             '${onSale == true ? (isNotBlank(salesPrice) ? salesPrice : normalPrice) : normalPrice}') ??
@@ -134,42 +134,42 @@ class PriceTools {
 
       var userRoles = UserBox().userRole;
       var metaData=product?.metaData;
-      if(metaData!=null && userRoles!=null){
-        for(var data in metaData){
-          if(data['key']=='festiUserRolePrices'){
-            // print('this is discount value ====================== ${jsonDecode(data['value'])}');
-            // print('this is user roles ====================== ${userRoles}');
-            Map discountMapValue = jsonDecode(data['value']);
-            for(var role in userRoles){
-              if(role == 'vendedor'){
-                var regularDiscountPrice = discountMapValue['vendedor'];
-                var salesDiscountPrice;
-                if(discountMapValue['salePrice'] !=null){
-                  salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
-                  salesPrice=salesDiscountPrice;
-                }
-                normalPrice=regularDiscountPrice;
-                regularrPrice=regularDiscountPrice;
-                // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
-                // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
-                // print('detail ======== this is vendedor regular price ====================== ${regularrPrice}');
-              }else if(role == 'minimarket'){
-                var regularDiscountPrice = discountMapValue['minimarket'];
-                var salesDiscountPrice;
-                if(discountMapValue['salePrice'] !=null){
-                  salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
-                  salesPrice=salesDiscountPrice;
-                }
-                normalPrice=regularDiscountPrice;
-                regularrPrice=regularDiscountPrice;
-                // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
-                // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
-                // print('detail ========  this is minimarket regular price ====================== ${regularrPrice}');
-              }
-            }
-          }
-        }
-      }
+      // if(metaData!=null && userRoles!=null){
+      //   for(var data in metaData){
+      //     if(data['key']=='festiUserRolePrices'){
+      //       // print('this is discount value ====================== ${jsonDecode(data['value'])}');
+      //       // print('this is user roles ====================== ${userRoles}');
+      //       Map discountMapValue = jsonDecode(data['value']);
+      //       for(var role in userRoles){
+      //         if(role == 'vendedor'){
+      //           var regularDiscountPrice = discountMapValue['vendedor'];
+      //           var salesDiscountPrice;
+      //           if(discountMapValue['salePrice'] !=null){
+      //             salesDiscountPrice = discountMapValue['salePrice']['vendedor'];
+      //             salesPrice=salesDiscountPrice;
+      //           }
+      //           normalPrice=regularDiscountPrice;
+      //           regularrPrice=regularDiscountPrice;
+      //           // print('detail ======== this is vendedor sales price ====================== ${salesPrice}');
+      //           // print('detail ======== this is vendedor normal price ====================== ${normalPrice}');
+      //           // print('detail ======== this is vendedor regular price ====================== ${regularrPrice}');
+      //         }else if(role == 'minimarket'){
+      //           var regularDiscountPrice = discountMapValue['minimarket'];
+      //           var salesDiscountPrice;
+      //           if(discountMapValue['salePrice'] !=null){
+      //             salesDiscountPrice = discountMapValue['salePrice']['minimarket'];
+      //             salesPrice=salesDiscountPrice;
+      //           }
+      //           normalPrice=regularDiscountPrice;
+      //           regularrPrice=regularDiscountPrice;
+      //           // print('detail ========  this is minimarket sales price ====================== ${salesPrice}');
+      //           // print('detail ========  this is minimarket normal price ====================== ${normalPrice}');
+      //           // print('detail ========  this is minimarket regular price ====================== ${regularrPrice}');
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
 
       var price = onSale == true
           ? (isNotBlank(salesPrice)

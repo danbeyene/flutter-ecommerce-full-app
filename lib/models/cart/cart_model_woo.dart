@@ -54,9 +54,9 @@ class CartModelWoo
       subtotal += getShippingCost()!;
     }
 
-    if (taxes.isNotEmpty) {
-      subtotal += taxesTotal;
-    }
+    // if (taxes.isNotEmpty) {
+    //   subtotal += taxesTotal;
+    // }
 
     subtotal -= rewardTotal;
 

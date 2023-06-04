@@ -61,7 +61,7 @@ class _StateChooseAddress extends BaseScreen<ChooseAddressScreen> {
   }
 
   void getDataFromLocal() {
-    var list = List<Address>.from(UserBox().addresses ?? <Address>[]);
+    var list = List<Address>.from(SettingsBox().addresses ?? <Address>[]);
     listAddress = list;
     setState(() {});
   }
@@ -79,10 +79,10 @@ class _StateChooseAddress extends BaseScreen<ChooseAddressScreen> {
   }
 
   void removeData(int index) {
-    var data = UserBox().addresses;
+    var data = SettingsBox().addresses;
     if (data != null) {
       data.removeAt(index);
-      UserBox().addresses = data;
+      SettingsBox().addresses = data;
     }
     getDataFromLocal();
   }
@@ -152,21 +152,21 @@ class _StateChooseAddress extends BaseScreen<ChooseAddressScreen> {
             )
           ],
         ),
-        const SizedBox(height: 4.0),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              '${s.zipCode}:  ',
-              style: TextStyle(color: Theme.of(context).primaryColor),
-            ),
-            Flexible(
-              child: Column(
-                children: <Widget>[Text(address.zipCode.toString())],
-              ),
-            )
-          ],
-        ),
+        // const SizedBox(height: 4.0),
+        // Row(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: <Widget>[
+        //     Text(
+        //       '${s.zipCode}:  ',
+        //       style: TextStyle(color: Theme.of(context).primaryColor),
+        //     ),
+        //     Flexible(
+        //       child: Column(
+        //         children: <Widget>[Text(address.zipCode.toString())],
+        //       ),
+        //     )
+        //   ],
+        // ),
         const SizedBox(height: 10.0),
       ],
     );

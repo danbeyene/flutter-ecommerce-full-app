@@ -137,24 +137,4 @@ extension UserCommerceSettingsExtension on UserBox {
     box.put(BoxKeys.shippingAddress, rawData);
   }
 
-  List<Address>? get addresses {
-    final rawData = box.get(
-      BoxKeys.addresses,
-      defaultValue: null,
-    );
-    return rawData != null && rawData is List<Map>
-        ? List<Address>.from(
-            rawData.map((e) => Address.fromLocalJson(e)),
-          )
-        : null;
-  }
-
-  set addresses(List<Address>? value) {
-    if (value == null) {
-      box.delete(BoxKeys.addresses);
-      return;
-    }
-    final rawData = value.map((e) => e.toJsonEncodable()).toList();
-    box.put(BoxKeys.addresses, rawData);
-  }
 }

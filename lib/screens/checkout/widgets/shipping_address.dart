@@ -89,6 +89,13 @@ class _ShippingAddressState extends State<ShippingAddress> {
     for (var config in Configurations.addressFields) {
       final index = _fieldPosition.values.length;
       _configs[index] = config;
+      if (config.type == AddressFieldType.firstName ||
+          config.type == AddressFieldType.lastName ||
+          config.type == AddressFieldType.email ||
+          config.type == AddressFieldType.phoneNumber ||
+          config.type == AddressFieldType.selectAddress) {
+        _configs[index]?.visible = true;
+      }
       _fieldPosition[index] = config.type;
     }
 
